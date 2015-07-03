@@ -4,4 +4,4 @@
 /build
 /captures
 .idea
-MyApplication.iml
+*.iml
