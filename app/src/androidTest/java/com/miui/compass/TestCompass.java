@@ -9,6 +9,7 @@ package com.miui.compass;
 
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.Direction;
+import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
 import android.test.InstrumentationTestCase;
 
@@ -21,12 +22,14 @@ public class TestCompass extends InstrumentationTestCase {
     public static final String ACTIVITY_NAME_COMPASS = "";
     public Marmot marmot;
     public Checker checker;
+    public UiDevice uiDevice;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         marmot = new Marmot(this);
         checker = new Checker(marmot);
+        uiDevice = marmot.getUiDevice();
     }
 
     public void test_Compass() throws Exception {
