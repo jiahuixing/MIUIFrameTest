@@ -20,6 +20,7 @@ public class TestCompass extends InstrumentationTestCase {
 
     public static final String PACKAGE_NAME_COMPASS = "";
     public static final String ACTIVITY_NAME_COMPASS = "";
+
     public Marmot marmot;
     public Checker checker;
     public UiDevice uiDevice;

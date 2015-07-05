@@ -21,6 +21,7 @@ public class TestNotes extends InstrumentationTestCase {
     public static final String ACTIVITY_NAME_NOTES = "";
     public static final String PACKAGE_NAME_INPUT_METHOD_BAIDU = "";
     public static final String PACKAGE_NAME_CAMERA = "";
+
     public Marmot marmot;
     public Checker checker;
     public UiDevice uiDevice;

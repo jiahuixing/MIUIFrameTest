@@ -22,6 +22,7 @@ public class TestFM extends InstrumentationTestCase {
     public static final String PACKAGE_NAME_FM = "";
     public static final String ACTIVITY_NAME_FM = "";
     public static final String PACKAGE_NAME_SOUND_RECORDER = "";
+
     public Marmot marmot;
     public Checker checker;
     public UiDevice uiDevice;

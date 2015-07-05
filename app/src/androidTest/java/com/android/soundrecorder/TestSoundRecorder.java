@@ -20,6 +20,7 @@ public class TestSoundRecorder extends InstrumentationTestCase {
 
     public static final String PACKAGE_NAME_SOUND_RECORDER = "";
     public static final String ACTIVITY_NAME_SOUND_RECORDER = "";
+
     public Marmot marmot;
     public Checker checker;
     public UiDevice uiDevice;
@@ -61,6 +62,16 @@ public class TestSoundRecorder extends InstrumentationTestCase {
             marmot.log("stop record.");
             stop.click();
             marmot.waitFor(2);
+            UiObject2 alertDialog;
+            alertDialog = marmot.getUiObject(By.clazz("").res(""));
+            if (alertDialog != null) {
+                marmot.log("alertDialog.");
+                UiObject2 confirm;
+                marmot.saveScreenshot("alertDialog");
+                confirm = marmot.getUiObject(By.clazz("").text(""));
+                confirm.click();
+                marmot.waitFor(2);
+            }
         }
     }
 
