@@ -93,6 +93,7 @@ public class TestNotes extends InstrumentationTestCase {
 
     @Override
     public void tearDown() throws Exception {
+        marmot.pressHome();
         super.tearDown();
     }
 }
