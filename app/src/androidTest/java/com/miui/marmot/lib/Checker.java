@@ -1,12 +1,5 @@
 package com.miui.marmot.lib;
 
-/**
- * Project name: MIUIFrameTest
- * Package name: com.miui.marmot.lib
- * Created by jiahuixing
- * Created at 2015--07-03 21:55
- */
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.test.uiautomator.By;
@@ -20,8 +13,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+/**
+ * Created by Y.M. on 2015/5/21.
+ */
 public class Checker {
-
     private static double IMG_DIFF_TOLERANCE = 0.02;
     private static int COMPRESS_PERCENT = 90;
     private final String actualImgPath = "/sdcard/actualImg.png";
@@ -33,12 +28,11 @@ public class Checker {
 
     /**
      * 在当前界面，断言局部小图存在。如不存在，保存当前界面截图。
-     *
      * @param imgPath 参照图绝对路径
-     * @param fromX   局部图在参照图中左上角的x值
-     * @param fromY   局部图在参照图中左上角的y值
-     * @param endX    局部图在参照图中右下角的x值
-     * @param endY    局部图在参照图中右下角的y值
+     * @param fromX 局部图在参照图中左上角的x值
+     * @param fromY 局部图在参照图中左上角的y值
+     * @param endX  局部图在参照图中右下角的x值
+     * @param endY 局部图在参照图中右下角的y值
      */
     public void assertImgExist(String imgPath, int fromX, int fromY, int endX, int endY) {
         boolean result = compareImg(imgPath, fromX, fromY, endX, endY, IMG_DIFF_TOLERANCE);
@@ -68,12 +62,11 @@ public class Checker {
 
     /**
      * 在当前界面，断言局部小图不存在。如存在，保存当前界面截图。
-     *
      * @param imgPath 参照图绝对路径
-     * @param fromX   局部图在参照图中左上角的x值
-     * @param fromY   局部图在参照图中左上角的y值
-     * @param endX    局部图在参照图中右下角的x值
-     * @param endY    局部图在参照图中右下角的y值
+     * @param fromX 局部图在参照图中左上角的x值
+     * @param fromY 局部图在参照图中左上角的y值
+     * @param endX  局部图在参照图中右下角的x值
+     * @param endY 局部图在参照图中右下角的y值
      * @throws FileNotFoundException
      */
     public void assertImgNotExist(String imgPath, int fromX, int fromY, int endX, int endY) {
@@ -94,7 +87,6 @@ public class Checker {
 
     /**
      * 在当前界面，断言文字存在。如不存在，保存当前界面截图。
-     *
      * @param text 文字内容
      */
     public void assertTextExist(String text) {
@@ -109,7 +101,6 @@ public class Checker {
 
     /**
      * 在当前界面，断言文字不存在。如存在，保存当前界面截图。
-     *
      * @param text 文字内容
      */
     public void assertTextNotExist(String text) {
@@ -187,14 +178,22 @@ public class Checker {
     }
 
     /**
+     * 记录testrail中编号为testrailId case的结果
+     * @param testrailId 编号
+     * @param result 结果
+     */
+    public void setTestrailResult(String testrailId, boolean result) {
+        log("TESTRAILID: " + testrailId + " " + (result ? "PASS" : "FAIL"));
+    }
+
+    /**
      * 当前界面截图和参照图的同区域进行比较
-     *
      * @param expectedImgPath 参照图绝对路径
-     * @param fromX           局部图在参照图中左上角的x值
-     * @param fromY           局部图在参照图中左上角的y值
-     * @param endX            局部图在参照图中右下角的x值
-     * @param endY            局部图在参照图中右下角的y值
-     * @param d               容错率
+     * @param fromX 局部图在参照图中左上角的x值
+     * @param fromY 局部图在参照图中左上角的y值
+     * @param endX 局部图在参照图中右下角的x值
+     * @param endY 局部图在参照图中右下角的y值
+     * @param d 容错率
      * @return 比较的结果，成功 true，失败 false。
      */
     private boolean compareImg(String expectedImgPath, int fromX, int fromY, int endX, int endY, double d) {
@@ -230,11 +229,10 @@ public class Checker {
 
     /**
      * 剪裁图片
-     *
      * @param fromX 剪裁起点的x值
      * @param fromY 剪裁起点的y值
-     * @param endX  剪裁结束点的x值
-     * @param endY  剪裁结束点的y值
+     * @param endX 剪裁结束点的x值
+     * @param endY 剪裁结束点的y值
      * @return
      */
     private Bitmap getSubImage(String imgPath, int fromX, int fromY, int endX, int endY) {
