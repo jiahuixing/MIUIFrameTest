@@ -56,6 +56,7 @@ public class Marmot {
 
     /**
      * 获得当前设备
+     *
      * @return 设备
      */
     public UiDevice getUiDevice() {
@@ -64,6 +65,7 @@ public class Marmot {
 
     /**
      * 获得设备包的上下文
+     *
      * @return 上下文
      */
     public Context getContext() {
@@ -72,6 +74,7 @@ public class Marmot {
 
     /**
      * 点击屏幕坐标为(x,y)的位置1次
+     *
      * @param x x坐标
      * @param y y坐标
      */
@@ -82,8 +85,9 @@ public class Marmot {
 
     /**
      * 连续点击屏幕坐标为(x,y)的位置times次
-     * @param x x坐标
-     * @param y y坐标
+     *
+     * @param x     x坐标
+     * @param y     y坐标
      * @param times 点击次数
      */
     public void click(int x, int y, int times) {
@@ -94,9 +98,10 @@ public class Marmot {
 
     /**
      * 连续点击屏幕坐标为(x,y)的位置times次，每次间隔sleepSeconds的秒
-     * @param x x坐标
-     * @param y y坐标
-     * @param times 点击次数
+     *
+     * @param x            x坐标
+     * @param y            y坐标
+     * @param times        点击次数
      * @param sleepSeconds 间隔时间
      */
     public void click(int x, int y, int times, double sleepSeconds) {
@@ -108,6 +113,7 @@ public class Marmot {
 
     /**
      * 长按选择器bySelector选择的ui元素
+     *
      * @param bySelector 选择器
      */
     public void longClick(BySelector bySelector) {
@@ -117,11 +123,12 @@ public class Marmot {
 
     /**
      * 从(startX,startY)滑动到(endX,endY)，滑动的步数为steps
+     *
      * @param startX 起始x坐标
      * @param startY 起始y坐标
-     * @param endX 结束x坐标
-     * @param endY 结束y坐标
-     * @param steps 滑动步数
+     * @param endX   结束x坐标
+     * @param endY   结束y坐标
+     * @param steps  滑动步数
      * @return 是否成功
      */
     public boolean drag(int startX, int startY, int endX, int endY, int steps) {
@@ -130,6 +137,7 @@ public class Marmot {
 
     /**
      * 向direction方向移动
+     *
      * @param direction 方向，UP,DOWN,LEFT,RIGHT
      */
     public void move(Direction direction) {
@@ -166,6 +174,7 @@ public class Marmot {
 
     /**
      * 点击Home按钮times次
+     *
      * @param times 点击次数
      */
     public void pressHome(int times) {
@@ -185,6 +194,7 @@ public class Marmot {
 
     /**
      * 点击回退Back按钮times次
+     *
      * @param times 点击次数
      */
     public void pressBack(int times) {
@@ -204,6 +214,7 @@ public class Marmot {
 
     /**
      * 点击菜单Menu按钮times次
+     *
      * @param times 点击次数
      */
     public void pressMenu(int times) {
@@ -225,6 +236,7 @@ public class Marmot {
 
     /**
      * 点击删除Delete按钮times次
+     *
      * @param times 点击次数
      */
     public void pressDelete(int times) {
@@ -245,6 +257,7 @@ public class Marmot {
 
     /**
      * 根据选择器bySelector获得对应的Ui元素
+     *
      * @param bySelector 选择器
      * @return Ui元素
      */
@@ -254,6 +267,7 @@ public class Marmot {
 
     /**
      * 判断选择器bySelector选择的Ui元素是否存在
+     *
      * @param bySelector 选择器
      * @return 是否存在
      */
@@ -263,6 +277,7 @@ public class Marmot {
 
     /**
      * 点击选择器bySelector选择的Ui元素
+     *
      * @param bySelector 选择器
      */
     public void click(BySelector bySelector) {
@@ -279,8 +294,9 @@ public class Marmot {
 
     /**
      * 设置可编辑对象的文本内容设置为text
+     *
      * @param bySelector 选择器
-     * @param text 文本内容
+     * @param text       文本内容
      * @return 是否成功
      */
     public boolean setText(BySelector bySelector, String text) {
@@ -309,7 +325,8 @@ public class Marmot {
 
     /**
      * 在path路径下创建文件
-     * @param path
+     *
+     * @param 文件路径
      * @return 是否成功
      */
     public boolean createFile(String path) {
@@ -339,6 +356,7 @@ public class Marmot {
 
     /**
      * 删除文件dir
+     *
      * @param dir 文件路径
      * @return 是否成功
      */
@@ -365,6 +383,7 @@ public class Marmot {
 
     /**
      * 判断path文件是否存在
+     *
      * @return 是否存在
      */
     public boolean fileExist(String path) {
@@ -377,6 +396,7 @@ public class Marmot {
 
     /**
      * 获取当前设备的旋转
+     *
      * @return 旋转方向
      */
     public int getDisplayRotation() {
@@ -385,6 +405,7 @@ public class Marmot {
 
     /**
      * 判断当前屏幕是否为亮
+     *
      * @return 是否亮
      */
     public boolean isScreenOn() {
@@ -412,6 +433,7 @@ public class Marmot {
 
     /**
      * 获取设备显示屏的高度
+     *
      * @return 高度
      */
     public int getDisplayHeight() {
@@ -420,6 +442,7 @@ public class Marmot {
 
     /**
      * 获取设备显示屏的宽度
+     *
      * @return 宽度
      */
     public int getDisplayWidth() {
@@ -428,6 +451,7 @@ public class Marmot {
 
     /**
      * 获取设备当前包的包名
+     *
      * @return 包名
      */
     public String getCurrentPackageName() {
@@ -436,6 +460,7 @@ public class Marmot {
 
     /**
      * 获得系统的时间
+     *
      * @return 时间的格式为yyyy-MM-dd HH:mm:ss
      */
     public String getSystemTime() {
@@ -446,13 +471,16 @@ public class Marmot {
 
     /**
      * 获得设备的名字
+     *
      * @return 设备名
      */
     public String getProductName() {
         return mDevice.getProductName();
     }
 
-    /**启动activity名为actiName的activity
+    /**
+     * 启动activity名为actiName的activity
+     *
      * @param activityName
      */
     public void launchActivity(String activityName) {
@@ -468,6 +496,7 @@ public class Marmot {
 
     /**
      * 打开最近应用面板
+     *
      * @return 是否成功
      */
     public boolean launchRecentPanel() {
@@ -484,6 +513,7 @@ public class Marmot {
 
     /**
      * 打开通知中心
+     *
      * @return 是否成功
      */
     public boolean openNotification() {
@@ -492,6 +522,7 @@ public class Marmot {
 
     /**
      * 保存截图，截图名为imgName
+     *
      * @param imgName 图片名字
      */
     public void saveScreenshot(String imgName) {
@@ -501,7 +532,8 @@ public class Marmot {
 
     /**
      * 对屏幕截图，保存在storePath，图片的规模为scale，质量为quality
-     * @param scale 默认为1.0
+     *
+     * @param scale   默认为1.0
      * @param quality 默认为90%
      * @return 是否成功
      */
@@ -752,6 +784,7 @@ public class Marmot {
 
     /**
      * 获取失败截图的命名。
+     *
      * @return 图片名称
      */
     private String getFailedImgName() {
@@ -760,6 +793,7 @@ public class Marmot {
 
     /**
      * 获取测试CASE的类名
+     *
      * @return 测试case的类名
      */
     private String getCaller() {

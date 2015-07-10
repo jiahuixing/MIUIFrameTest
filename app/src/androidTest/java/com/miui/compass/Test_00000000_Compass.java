@@ -14,16 +14,12 @@ import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
 import android.test.InstrumentationTestCase;
 
+import com.miui.frame.Lib_Frame_Constants;
+import com.miui.frame.Lib_Frame_Utils;
 import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 public class Test_00000000_Compass extends InstrumentationTestCase {
-
-    public static final String PACKAGE_NAME_COMPASS = "com.miui.compass";
-    public static final String ACTIVITY_NAME_COMPASS = "com.miui.compass/.CompassActivity";
-    public static final String PACKAGE_NAME_KEY_GUARD = "com.android.keyguard";
-
-    public static final String IMAGE_EXTENSION = ".png";
 
     public Marmot marmot;
     public Checker checker;
@@ -35,29 +31,25 @@ public class Test_00000000_Compass extends InstrumentationTestCase {
         marmot = new Marmot(this);
         checker = new Checker(marmot);
         uiDevice = marmot.getUiDevice();
-        if (!marmot.isScreenOn()) {
-            marmot.wakeUp();
-            marmot.waitFor(1);
-        }
-        if (marmot.getCurrentPackageName().equals(PACKAGE_NAME_KEY_GUARD)) {
-            marmot.move(Direction.UP);
-            marmot.waitFor(1);
-        }
+        Lib_Frame_Utils.unLock(marmot);
     }
 
     public void test_Compass() throws Exception {
         marmot.log("launch compass.");
-        marmot.launchActivity(ACTIVITY_NAME_COMPASS);
+        marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_COMPASS);
         marmot.waitFor(2);
-        checker.assertTrue("compass not launched.", marmot
-                .getCurrentPackageName().equals(PACKAGE_NAME_COMPASS));
+        checker.assertTrue(
+                "compass not launched.",
+                marmot.getCurrentPackageName().equals(
+                        Lib_Frame_Constants.PACKAGE_NAME_COMPASS));
         UiObject2 alertDialog;
         UiObject2 confirm;
         alertDialog = marmot.getUiObject(By.clazz("android.widget.TextView")
                 .res("miui:id/alertTitle"));
         if (alertDialog != null) {
             marmot.log("deal with alert dialog.");
-            marmot.saveScreenshot("alertDialog" + IMAGE_EXTENSION);
+            marmot.saveScreenshot("alertDialog"
+                    + Lib_Frame_Constants.IMAGE_EXTENSION);
             confirm = marmot.getUiObject(By.clazz("android.widget.Button")
                     .text("同意并继续"));
             confirm.click();
@@ -70,14 +62,16 @@ public class Test_00000000_Compass extends InstrumentationTestCase {
             marmot.log("calibratePressure.");
             // marmot.log(String.format("calibratePressure: %s",
             // calibratePressure.getClassName()));
-            marmot.saveScreenshot("calibratePressure" + IMAGE_EXTENSION);
+            marmot.saveScreenshot("calibratePressure"
+                    + Lib_Frame_Constants.IMAGE_EXTENSION);
             calibratePressure.click();
             marmot.waitFor(2);
             confirm = marmot.getUiObject(By.clazz("android.widget.Button")
                     .text("确定"));
             if (confirm != null) {
                 marmot.log("not connected.");
-                marmot.saveScreenshot("noNet" + IMAGE_EXTENSION);
+                marmot.saveScreenshot("noNet"
+                        + Lib_Frame_Constants.IMAGE_EXTENSION);
                 confirm.click();
                 marmot.waitFor(1);
             }
