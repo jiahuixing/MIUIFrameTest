@@ -208,4 +208,22 @@ public class Lib_Frame_Utils {
         // }
     }
 
+    public static boolean dialNumber(Marmot marmot, String dialNumber) {
+        UiObject2 dialNumberButton;
+        char temp;
+        int number;
+        for (int i = 0; i < dialNumber.length(); i++) {
+            temp = dialNumber.charAt(i);
+            if (Character.isDigit(temp)) {
+                number = Integer.parseInt(String.valueOf(temp));
+                dialNumberButton = marmot.getUiObject(By.clazz("android.widget.ImageView").res(Lib_Frame_Constants.DIAL_RES.get(number)));
+                dialNumberButton.click();
+                marmot.waitFor(1);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
