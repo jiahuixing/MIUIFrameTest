@@ -54,15 +54,15 @@ public class Test_00000000_Calculator extends InstrumentationTestCase {
         clear = marmot.getUiObject(By.clazz("android.widget.Button").res(
                 "com.android.calculator2:id/clear"));
         equal = marmot.getUiObject(By.clazz("android.widget.Button").res(
-                Lib_Frame_Constants.OPERATE_EQUAL));
+                Lib_Frame_Constants.OPERATION_EQUAL));
         addition = marmot.getUiObject(By.clazz("android.widget.Button").res(
-                Lib_Frame_Constants.OPERATE_ADD));
+                Lib_Frame_Constants.OPERATION_ADD));
         subtraction = marmot.getUiObject(By.clazz("android.widget.Button").res(
-                Lib_Frame_Constants.OPERATE_SUB));
+                Lib_Frame_Constants.OPERATION_SUB));
         multiplication = marmot.getUiObject(By.clazz("android.widget.Button")
-                .res(Lib_Frame_Constants.OPERATE_MUL));
+                .res(Lib_Frame_Constants.OPERATION_MUL));
         division = marmot.getUiObject(By.clazz("android.widget.Button").res(
-                Lib_Frame_Constants.OPERATE_DIV));
+                Lib_Frame_Constants.OPERATION_DIV));
         clear.click();
         marmot.waitFor(2);
         calculatorResult = marmot.getUiObject(By
@@ -79,15 +79,15 @@ public class Test_00000000_Calculator extends InstrumentationTestCase {
         clear.click();
         marmot.waitFor(2);
         Lib_Frame_Utils.calculateNumber(marmot, 0, 0,
-                Lib_Frame_Constants.OPERATE_SUB);
+                Lib_Frame_Constants.OPERATION_SUB);
         divisionResultZero = calculatorResult.getText();
         Lib_Frame_Utils.calculateNumber(marmot, 1, 0,
-                Lib_Frame_Constants.OPERATE_SUB);
+                Lib_Frame_Constants.OPERATION_SUB);
         divisionResultPos = calculatorResult.getText();
         clear.click();
         marmot.waitFor(2);
         Lib_Frame_Utils.calculateNumber(marmot, 0, 1,
-                Lib_Frame_Constants.OPERATE_SUB);
+                Lib_Frame_Constants.OPERATION_SUB);
         division.click();
         marmot.waitFor(2);
         zero.click();
@@ -134,39 +134,39 @@ public class Test_00000000_Calculator extends InstrumentationTestCase {
         testStep += 1;
         marmot.log(String.format("%s. + - * /.", testStep));
         Random random = new Random();
-        int firstRandomInt, secondRandomInt, maxInt = 9;
+        int firstRandomInt, secondRandomInt, numberCount = 9;
         int resultAddInt, resultSubInt, resultMulInt, resultDivInt;
         String resultAddString, resultSubString, resultMulString, resultDivString;
         clear.click();
         marmot.waitFor(2);
-        firstRandomInt = random.nextInt(maxInt);
-        secondRandomInt = random.nextInt(maxInt);
+        firstRandomInt = random.nextInt(numberCount);
+        secondRandomInt = random.nextInt(numberCount);
         Lib_Frame_Utils.calculateNumber(marmot, firstRandomInt,
-                secondRandomInt, Lib_Frame_Constants.OPERATE_ADD);
+                secondRandomInt, Lib_Frame_Constants.OPERATION_ADD);
         resultAddInt = firstRandomInt + secondRandomInt;
         resultAddString = calculatorResult.getText();
         clear.click();
         marmot.waitFor(2);
-        firstRandomInt = random.nextInt(maxInt);
-        secondRandomInt = random.nextInt(maxInt);
+        firstRandomInt = random.nextInt(numberCount);
+        secondRandomInt = random.nextInt(numberCount);
         Lib_Frame_Utils.calculateNumber(marmot, firstRandomInt,
-                secondRandomInt, Lib_Frame_Constants.OPERATE_SUB);
+                secondRandomInt, Lib_Frame_Constants.OPERATION_SUB);
         resultSubInt = firstRandomInt - secondRandomInt;
         resultSubString = calculatorResult.getText();
         clear.click();
         marmot.waitFor(2);
-        firstRandomInt = random.nextInt(maxInt);
-        secondRandomInt = random.nextInt(maxInt);
+        firstRandomInt = random.nextInt(numberCount);
+        secondRandomInt = random.nextInt(numberCount);
         Lib_Frame_Utils.calculateNumber(marmot, firstRandomInt,
-                secondRandomInt, Lib_Frame_Constants.OPERATE_MUL);
+                secondRandomInt, Lib_Frame_Constants.OPERATION_MUL);
         resultMulInt = firstRandomInt * secondRandomInt;
         resultMulString = calculatorResult.getText();
         clear.click();
         marmot.waitFor(2);
-        firstRandomInt = random.nextInt(maxInt);
-        secondRandomInt = random.nextInt(maxInt);
+        firstRandomInt = random.nextInt(numberCount);
+        secondRandomInt = random.nextInt(numberCount);
         Lib_Frame_Utils.calculateNumber(marmot, firstRandomInt,
-                secondRandomInt, Lib_Frame_Constants.OPERATE_DIV);
+                secondRandomInt, Lib_Frame_Constants.OPERATION_DIV);
         resultDivInt = firstRandomInt / secondRandomInt;
         resultDivString = calculatorResult.getText();
         if (resultAddString.equals(Integer.toString(resultAddInt))
@@ -187,15 +187,63 @@ public class Test_00000000_Calculator extends InstrumentationTestCase {
         }
         testStep += 1;
         marmot.log(String.format("%s. continuous.", testStep));
-        int calculateTimes, clickNumber;
-        UiObject2 button;
-        calculateTimes = random.nextInt(maxInt);
+        clear.click();
+        marmot.waitFor(2);
+        int operateCount = 4;
+        int calculateTimes, randomNumber, randomOperate, resultInt = 0;
+        String resultString;
+        UiObject2 numberButton;
+        calculateTimes = random.nextInt(numberCount);
+        marmot.log(String.format("calculateTimes = %s", calculateTimes));
         for (int i = 0; i < calculateTimes; i++) {
-            clickNumber = random.nextInt(maxInt);
-            button = marmot.getUiObject(By.clazz("").res(""));
-            button.click();
-            marmot.waitFor(2);
-
+            randomNumber = random.nextInt(numberCount);
+            numberButton = marmot.getUiObject(By.clazz("android.widget.Button").res(Lib_Frame_Constants.CALCULATOR_NUMBER_RES.get(randomNumber)));
+            randomOperate = random.nextInt(operateCount);
+            switch (randomOperate) {
+                case 0:
+                    resultInt = resultInt + randomNumber;
+                    addition.click();
+                    marmot.waitFor(2);
+                    numberButton.click();
+                    marmot.waitFor(2);
+                    equal.click();
+                    marmot.waitFor(2);
+                    break;
+                case 1:
+                    resultInt = resultInt - randomNumber;
+                    subtraction.click();
+                    marmot.waitFor(2);
+                    numberButton.click();
+                    marmot.waitFor(2);
+                    equal.click();
+                    marmot.waitFor(2);
+                    break;
+                case 2:
+                    resultInt = resultInt * randomNumber;
+                    multiplication.click();
+                    marmot.waitFor(2);
+                    numberButton.click();
+                    marmot.waitFor(2);
+                    equal.click();
+                    marmot.waitFor(2);
+                    break;
+                case 3:
+                    resultInt = resultInt / randomNumber;
+                    subtraction.click();
+                    marmot.waitFor(2);
+                    numberButton.click();
+                    marmot.waitFor(2);
+                    equal.click();
+                    marmot.waitFor(2);
+                    break;
+            }
+        }
+        resultString = calculatorResult.getText();
+        if (resultString.equals(Integer.toString(resultInt))) {
+            checker.setTestrailResult("C510622", true);
+        } else {
+            marmot.log(String.format("resultInt = %s, resultString = %s", resultInt, resultString));
+            checker.setTestrailResult("C510622", false);
         }
     }
 
