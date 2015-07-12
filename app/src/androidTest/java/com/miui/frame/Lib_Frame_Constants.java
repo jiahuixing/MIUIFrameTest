@@ -92,7 +92,7 @@ public class Lib_Frame_Constants {
                 "com.android.calculator2:id/mul");
         CALCULATOR_OPERATION_RES.put(OPERATION_DIV,
                 "com.android.calculator2:id/div");
-        CALCULATOR_OPERATION_RES.put(OPERATION_DIV,
+        CALCULATOR_OPERATION_RES.put(OPERATION_EQUAL,
                 "com.android.calculator2:id/equal");
     }
 
