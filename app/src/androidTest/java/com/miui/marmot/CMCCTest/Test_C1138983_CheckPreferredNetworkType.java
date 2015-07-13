@@ -15,7 +15,6 @@ public class Test_C1138983_CheckPreferredNetworkType extends InstrumentationTest
         mm = new Marmot(this);
         cc = new Checker(mm);
     }
-
     public void test_C1138983_CheckPreferredNetworkType() throws Exception {
         mm.log("打开设置");
         mm.pressHome();
@@ -31,8 +30,8 @@ public class Test_C1138983_CheckPreferredNetworkType extends InstrumentationTest
         mm.pressBack(3);
 
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

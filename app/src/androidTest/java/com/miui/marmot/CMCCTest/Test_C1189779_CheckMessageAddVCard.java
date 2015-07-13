@@ -38,8 +38,8 @@ public class Test_C1189779_CheckMessageAddVCard extends InstrumentationTestCase 
         UiScrollable list2 = new UiScrollable(new UiSelector().className("android.widget.ListView"));
         list2.getChildByText(new UiSelector().className("android.widget.CheckedTextView"), "使用vCard文件发送", true);
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

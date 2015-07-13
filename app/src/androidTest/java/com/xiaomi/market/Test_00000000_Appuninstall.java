@@ -12,7 +12,6 @@ import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
-
 public class Test_00000000_Appuninstall extends InstrumentationTestCase {
 
     public Marmot mm;

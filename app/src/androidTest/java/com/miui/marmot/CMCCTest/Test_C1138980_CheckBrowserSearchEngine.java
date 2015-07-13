@@ -30,9 +30,9 @@ public class Test_C1138980_CheckBrowserSearchEngine extends InstrumentationTestC
         cc.assertTextNotExist("谷歌");
         cc.assertTextExist("139");
 
-    }
-
-
+    }    
+    
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

@@ -41,8 +41,8 @@ public class Test_C1189822_CheckAPPriorityManually extends InstrumentationTestCa
         cc.assertTextExist("已保存的接入点列表");
         mm.pressBack(2);
 
-    }
-
+    }    
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

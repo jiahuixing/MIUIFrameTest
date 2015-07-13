@@ -30,9 +30,9 @@ public class Test_C1138989_CheckWeatherConnectionAlert extends InstrumentationTe
         mm.click(By.res("android:id/button2"));
 
 
-    }
-
-
+    }   
+    
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

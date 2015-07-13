@@ -35,8 +35,8 @@ public class Test_C1176955_CheckRecorderFormat extends InstrumentationTestCase {
         mm.log("验证成功：不能选择录音格式");
 
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

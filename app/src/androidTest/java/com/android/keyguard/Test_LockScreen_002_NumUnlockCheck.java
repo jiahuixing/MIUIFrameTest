@@ -10,7 +10,6 @@ import junit.framework.Assert;
 
 public class Test_LockScreen_002_NumUnlockCheck extends InstrumentationTestCase {
     private UiDevice mDevice;
-
     protected void setUp() {
         try {
             super.setUp();

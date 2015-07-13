@@ -46,8 +46,8 @@ public class Test_C1138991_CheckLockScreenEmergency extends InstrumentationTestC
         mm.pressHome();
 
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

@@ -8,7 +8,8 @@ import com.miui.marmot.lib.Marmot;
 
 public class Test_00000000_QuickLink extends InstrumentationTestCase {
     private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME + "/.HomeActivity";
+    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
+            + "/.HomeActivity";
     private Marmot mm;
     private Checker cc;
 
@@ -31,17 +32,21 @@ public class Test_00000000_QuickLink extends InstrumentationTestCase {
 
     public void testQuickLink() throws Exception {
         mm.launchActivity(HOME_ACTIVITY_NAME);
-
+        mm.log("Step 1 : Open video.");
+        mm.log("Step 2 : Check play history.");
         mm.click(By.text("播放历史"));
         cc.assertTextExist("播放历史");
         mm.pressBack();
 
+        mm.log("Step 3 : Check My favourite.");
         mm.click(By.text("我的收藏"));
         cc.assertTextExist("我的收藏");
         mm.pressBack();
 
+        mm.log("Step 4 : Check My offline video.");
         mm.click(By.text("我的离线"));
         cc.assertTextExist("我的离线");
         mm.pressBack();
+        cc.setTestrailResult("c1122517", true);
     }
 }

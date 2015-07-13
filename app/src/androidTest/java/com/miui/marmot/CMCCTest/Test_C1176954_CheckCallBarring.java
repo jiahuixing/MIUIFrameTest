@@ -39,8 +39,8 @@ public class Test_C1176954_CheckCallBarring extends InstrumentationTestCase {
         mm.waitFor(1);
         mm.pressHome();
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

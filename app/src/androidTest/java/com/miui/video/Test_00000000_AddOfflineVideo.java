@@ -11,7 +11,8 @@ import java.util.List;
 
 public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
     private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME + "/.HomeActivity";
+    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
+            + "/.HomeActivity";
     private Marmot mm;
     private Checker cc;
 
@@ -34,11 +35,14 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
 
     public void testAddOfflineVideo() throws Exception {
         mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.log("Step 1 : Open video.");
 
         mm.click(By.clazz(android.widget.TextView.class).text("电影"));
+        mm.log("Step 2 : Enter movie channel.");
         mm.waitFor(3);
 
         mm.click(By.res(PACKAGE_NAME + ":id/tv_tab_indicator").text("新剧"));
+        mm.log("Step 3 : Enter New tab.");
         mm.waitFor(3);
 
         String newOfflineTitle = null;
@@ -58,6 +62,7 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
                         PACKAGE_NAME + ":id/title_top"));
                 newOfflineTitle = titleBar.findObject(
                         By.clazz(android.widget.TextView.class)).getText();
+                mm.log("Step 3: Add offline video.");
                 offlineButton.click();
                 mm.pressBack();
 
@@ -69,7 +74,7 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
         cc.assertTrue("Can not find offline video", newOfflineTitle != null);
 
         mm.pressBack();
-
+        mm.log("Step 4: Go to Offline view and check added result.");
         mm.click(By.clazz(android.widget.TextView.class).text("我的离线"));
 
         mm.waitFor(2);
@@ -78,5 +83,6 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
                 PACKAGE_NAME + ":id/offline_media_bar"));
 
         cc.assertTextExist(newOfflineTitle);
+        cc.setTestrailResult("c1122592", true);
     }
 }

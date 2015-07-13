@@ -44,8 +44,8 @@ public class Test_C1138985_Check4636mode extends InstrumentationTestCase {
         mm.waitFor(2);
         mm.pressHome(1);
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

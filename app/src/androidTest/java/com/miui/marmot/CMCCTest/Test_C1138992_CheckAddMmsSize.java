@@ -18,7 +18,6 @@ public class Test_C1138992_CheckAddMmsSize extends InstrumentationTestCase {
         mm = new Marmot(this);
         cc = new Checker(mm);
     }
-
     public void test_C1138992_CheckAddMmsSize() throws Exception {
         mm.log("清除相机缓存");
         mm.pressHome();
@@ -70,8 +69,8 @@ public class Test_C1138992_CheckAddMmsSize extends InstrumentationTestCase {
         mm.pressHome();
 
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

@@ -38,8 +38,8 @@ public class Test_C1189773_CheckMessageForwardSenderInfo extends Instrumentation
         UiScrollable list2 = new UiScrollable(new UiSelector().className("android.widget.ListView"));
         list2.getChildByText(new UiSelector().className("android.widget.TextView"), "转发时显示信息来源", true);
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

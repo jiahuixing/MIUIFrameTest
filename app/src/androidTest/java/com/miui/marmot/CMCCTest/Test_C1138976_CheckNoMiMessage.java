@@ -40,8 +40,8 @@ public class Test_C1138976_CheckNoMiMessage extends InstrumentationTestCase {
         cc.assertTextNotExist("免费网络短信");
         cc.assertTextNotExist("MIUI免费网络短信");
 
-    }
-
+    }   
+    
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();
