@@ -11,12 +11,12 @@ import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
 
-public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
+public class Test_0001C1072230_AddATool extends InstrumentationTestCase{
 	public Marmot mm;
 	public Checker cc;
 
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception{
 		super.setUp();
 		mm = new Marmot(this);
 		cc = new Checker(mm);
@@ -25,11 +25,11 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 
 	public void test_00000001_AddATool() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
-		int y2 = (int) (mm.getDisplayHeight() / 2);
+		int y2 = (int)(mm.getDisplayHeight() / 2);
 		mm.log("Step 1 : OpenUnlock");
-		int DisplayWidth;
-		DisplayWidth = mm.getDisplayWidth();
-		if (!mm.isScreenOn()) {
+		int DisplayWidth ;
+		DisplayWidth = mm.getDisplayWidth() ;
+		if(!mm.isScreenOn()){
 			mm.wakeUp();
 			mm.waitFor(1);
 			mm.move(Direction.UP);
@@ -47,7 +47,7 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 		listView.scrollTextIntoView("其他高级设置");
 		mm.click(By.text("其他高级设置"));
 		mm.click(By.text("按键"));
-		if (mm.exist(By.text("启动近期任务"))) {
+		if(mm.exist(By.text("启动近期任务"))){
 			mm.click(By.text("启动近期任务"));
 			mm.click(By.text("显示菜单"));
 		}
@@ -57,13 +57,13 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 		mm.pressMenu();
 		mm.click(By.text("添加小工具"));
 		mm.waitFor(1);
-		if (DisplayWidth == 1440) {
+		if(DisplayWidth == 1440){
 			mm.drag(1000, 2300, 500, 2300, 4);
 			mm.waitFor(1);
 			mm.drag(500, 1500, 1000, 1500, 4);
 			mm.waitFor(1);
 		}
-		if (DisplayWidth == 1080) {
+		if(DisplayWidth == 1080){
 			mm.drag(900, 1700, 200, 1700, 4);
 			mm.waitFor(1);
 			mm.drag(200, 1000, 900, 1000, 4);
@@ -73,7 +73,7 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 		mm.waitFor(1);
 
 		mm.log(" Step ：5 Calculate '1.6 + 0.3='");
-		if (DisplayWidth == 1080) {
+		if(DisplayWidth == 1080){
 			mm.click(200, 350); //点击清除
 			mm.waitFor(1);
 			mm.click(200, 920); //1
@@ -88,15 +88,14 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 			mm.waitFor(1);
 			mm.click(700, 1100);//.
 			mm.waitFor(1);
-			mm.click(700, 920);//3
-			mm.waitFor(1);
-			;
+			mm.click(700,920);//3
+			mm.waitFor(1);;
 			mm.click(900, 1100);//=
 			mm.waitFor(1);
 			mm.saveScreenshot("Calculate.png");
 		}
-
-		if (DisplayWidth == 1440) {
+		
+		if(DisplayWidth == 1440){
 			mm.click(430, 450); //点击清除
 			mm.waitFor(1);
 			mm.click(400, 1200); //1
@@ -111,9 +110,8 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase {
 			mm.waitFor(1);
 			mm.click(900, 1300);//.
 			mm.waitFor(1);
-			mm.click(900, 1100);//3
-			mm.waitFor(1);
-			;
+			mm.click(900,1100);//3
+			mm.waitFor(1);;
 			mm.click(1100, 1200);//=
 			mm.waitFor(1);
 			mm.saveScreenshot("Calculate.png");

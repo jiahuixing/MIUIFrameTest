@@ -17,12 +17,12 @@ import java.io.FileOutputStream;
  * Created by Y.M. on 2015/5/21.
  */
 public class Checker {
+    private Marmot mMarmot;
+    private final String actualImgPath = "/sdcard/actualImg.png";
     private static double IMG_DIFF_TOLERANCE = 0.02;
     private static int COMPRESS_PERCENT = 90;
-    private final String actualImgPath = "/sdcard/actualImg.png";
-    private Marmot mMarmot;
 
-    public Checker(Marmot marmot) {
+    public Checker(Marmot marmot){
         mMarmot = marmot;
     }
 
@@ -34,25 +34,27 @@ public class Checker {
      * @param endX  局部图在参照图中右下角的x值
      * @param endY 局部图在参照图中右下角的y值
      */
-    public void assertImgExist(String imgPath, int fromX, int fromY, int endX, int endY) {
+    public void assertImgExist(String imgPath, int fromX, int fromY, int endX, int endY){
         boolean result = compareImg(imgPath, fromX, fromY, endX, endY, IMG_DIFF_TOLERANCE);
-        if (result) {
+        if(result){
             log("PASS, The expected image exists.");
-        } else {
+        }
+        else{
             log("FAIL, The expected image does not exist.");
 
             Bitmap standImage = getSubImage(imgPath, fromX, fromY, endX, endY);
-            Bitmap currentImage = getSubImage(actualImgPath, fromX, fromY, endX, endY);
+            Bitmap currentImage = getSubImage(actualImgPath, fromX, fromY, endX, endY) ;
             Bitmap failedImage;
 
-            if ((failedImage = mergeTwoImages(standImage, currentImage)) != null) {
+            if ((failedImage = mergeTwoImages(standImage, currentImage)) != null){
                 try {
                     failedImage.compress(Bitmap.CompressFormat.PNG, COMPRESS_PERCENT, new FileOutputStream(new File(mMarmot.mFailedImgName)));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     log("Exception in save Failed image");
                 }
-            } else {
+            }
+            else{
                 log("Exception in merge Failed image");
             }
 
@@ -71,13 +73,14 @@ public class Checker {
      */
     public void assertImgNotExist(String imgPath, int fromX, int fromY, int endX, int endY) {
         boolean result = this.compareImg(imgPath, fromX, fromY, endX, endY, IMG_DIFF_TOLERANCE);
-        if (result == false) {
+        if(result == false){
             log("PASS, The expected image does not exist.");
-        } else {
+        }
+        else{
             log("FAIL, The expected image exists.");
-            try {
+            try{
                 getSubImage(actualImgPath, fromX, fromY, endX, endY).compress(Bitmap.CompressFormat.PNG, COMPRESS_PERCENT, new FileOutputStream(new File(mMarmot.mFailedImgName)));
-            } catch (Exception e) {
+            }catch(Exception e){
                 log("Exception in get Failed image");
             }
 
@@ -89,10 +92,11 @@ public class Checker {
      * 在当前界面，断言文字存在。如不存在，保存当前界面截图。
      * @param text 文字内容
      */
-    public void assertTextExist(String text) {
-        if (mMarmot.exist(By.text(text))) {
+    public void assertTextExist(String text){
+        if(mMarmot.exist(By.text(text))){
             log("PASS, Text \"" + text + "\" exists.");
-        } else {
+        }
+        else{
             log("FAIL, Text \"" + text + "\" does not exist.");
             saveScreenshot(mMarmot.mFailedImgName);
             Assert.assertTrue(false);
@@ -103,63 +107,57 @@ public class Checker {
      * 在当前界面，断言文字不存在。如存在，保存当前界面截图。
      * @param text 文字内容
      */
-    public void assertTextNotExist(String text) {
-        if (!mMarmot.exist(By.text(text))) {
+    public void assertTextNotExist(String text){
+        if(!mMarmot.exist(By.text(text))){
             log("PASS, Text \"" + text + "\" does not exist.");
-        } else {
+        }
+        else{
             log("FAIL, Text \"" + text + "\" exists.");
             saveScreenshot(mMarmot.mFailedImgName);
             Assert.assertTrue(false);
         }
     }
 
-    public void assertTrue(String message, boolean condition) {
-        if (condition) {
-            log(" PASS, " + message);
-        } else {
-            log(" FAIL, " + message);
+    public void assertTrue(String message, boolean condition){
+        if(condition){
+            log(" PASS, " + message );
+        }
+        else{
+            log(" FAIL, " + message );
             saveScreenshot(mMarmot.mFailedImgName);
         }
 
         Assert.assertTrue(condition);
     }
 
-    public void assertFalse(String message, boolean condition) {
-        if (!condition) {
-            log(" PASS, " + message);
-        } else {
-            log(" FAIL, " + message);
+    public void assertFalse(String message, boolean condition){
+        if(!condition){
+            log(" PASS, " + message );
+        }
+        else{
+            log(" FAIL, " + message );
             saveScreenshot(mMarmot.mFailedImgName);
         }
 
         Assert.assertFalse(condition);
     }
 
-    public void assertUiObejctExist(BySelector bySelector) {
-        if (mMarmot.exist(bySelector)) {
+    public void assertUiObejctExist(BySelector bySelector){
+        if(mMarmot.exist(bySelector)){
             log("PASS, UiObject exists.");
-        } else {
+        }
+        else{
             log("FAIL, UiObject does not exist.");
             saveScreenshot(mMarmot.mFailedImgName);
             Assert.assertTrue(false);
         }
     }
 
-    public void assertUiObejctNotExist(BySelector bySelector) {
-        if (!mMarmot.exist(bySelector)) {
+    public void assertUiObejctNotExist(BySelector bySelector){
+        if(!mMarmot.exist(bySelector)){
             log("PASS, UiObject exists.");
-        } else {
-            log("FAIL, UiObject does not exist.");
-            saveScreenshot(mMarmot.mFailedImgName);
-            Assert.assertTrue(false);
         }
-    }
-
-    @Deprecated
-    public void assertUiObejctExist(UiObject object) {
-        if (object.exists()) {
-            log("PASS, UiObject exists.");
-        } else {
+        else{
             log("FAIL, UiObject does not exist.");
             saveScreenshot(mMarmot.mFailedImgName);
             Assert.assertTrue(false);
@@ -167,10 +165,23 @@ public class Checker {
     }
 
     @Deprecated
-    public void assertUiObjectNotExist(UiObject object) {
-        if (object.exists() == false) {
+    public void assertUiObejctExist(UiObject object){
+        if(object.exists()){
+            log("PASS, UiObject exists.");
+        }
+        else{
+            log("FAIL, UiObject does not exist.");
+            saveScreenshot(mMarmot.mFailedImgName);
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Deprecated
+    public void assertUiObjectNotExist(UiObject object){
+        if(object.exists() == false){
             log("PASS, UiObject does not exist.");
-        } else {
+        }
+        else{
             log("FAIL, UiObject exists.");
             saveScreenshot(mMarmot.mFailedImgName);
             Assert.assertTrue(false);
@@ -182,7 +193,7 @@ public class Checker {
      * @param testrailId 编号
      * @param result 结果
      */
-    public void setTestrailResult(String testrailId, boolean result) {
+    public void setTestrailResult(String testrailId, boolean result){
         log("TESTRAILID: " + testrailId + " " + (result ? "PASS" : "FAIL"));
     }
 
@@ -196,11 +207,11 @@ public class Checker {
      * @param d 容错率
      * @return 比较的结果，成功 true，失败 false。
      */
-    private boolean compareImg(String expectedImgPath, int fromX, int fromY, int endX, int endY, double d) {
+    private boolean compareImg(String expectedImgPath, int fromX, int fromY, int endX, int endY, double d){
         saveScreenshot(actualImgPath);
         Bitmap actualBitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(actualImgPath, null), fromX, fromY, (endX - fromX), (endY - fromY));
         Bitmap expectedBitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(expectedImgPath, null), fromX, fromY, (endX - fromX), (endY - fromY));
-        if (expectedBitmap == null || actualBitmap == null) {
+        if(expectedBitmap == null || actualBitmap == null) {
             return false;
         }
 
@@ -208,7 +219,7 @@ public class Checker {
         int width = expectedBitmap.getWidth();
         int height = expectedBitmap.getHeight();
 
-        if (width != actualBitmap.getWidth() || height != actualBitmap.getHeight()) {
+        if(width != actualBitmap.getWidth() || height != actualBitmap.getHeight()){
             return false;
         }
 
@@ -224,7 +235,7 @@ public class Checker {
             }
         }
 
-        return nonMatchingPixels < allowedMaxNonMatchPixels ? true : false;
+        return nonMatchingPixels < allowedMaxNonMatchPixels ? true : false ;
     }
 
     /**
@@ -235,38 +246,38 @@ public class Checker {
      * @param endY 剪裁结束点的y值
      * @return
      */
-    private Bitmap getSubImage(String imgPath, int fromX, int fromY, int endX, int endY) {
+    private Bitmap getSubImage(String imgPath, int fromX, int fromY, int endX, int endY){
         Bitmap subImg = null;
 
-        try {
+        try{
             subImg = Bitmap.createBitmap(BitmapFactory.decodeFile(imgPath, null), fromX, fromY, (endX - fromX), (endY - fromY));
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
         }
 
         return subImg;
     }
 
-    private Bitmap mergeTwoImages(Bitmap img1, Bitmap img2) {
+    private Bitmap mergeTwoImages(Bitmap img1, Bitmap img2){
         int width = 0;
         int height = 0;
         int[] tmpPixels;
 
-        if (img1 == null || img2 == null) {
+        if (img1 == null || img2 == null){
             return null;
         }
 
         width = img1.getWidth();
         height = img1.getHeight();
-        tmpPixels = new int[width * height];
+        tmpPixels = new int [width * height];
         Bitmap newImage = Bitmap.createBitmap(width * 2, height, Bitmap.Config.ARGB_8888);
 
-        try {
+        try{
             img1.getPixels(tmpPixels, 0, width, 0, 0, width, height);
             newImage.setPixels(tmpPixels, 0, width, 0, 0, width, height);
             img2.getPixels(tmpPixels, 0, width, 0, 0, width, height);
             newImage.setPixels(tmpPixels, 0, width, width, 0, width, height);
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
             return null;
         }

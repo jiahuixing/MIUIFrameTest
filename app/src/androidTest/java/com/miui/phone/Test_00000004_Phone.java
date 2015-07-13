@@ -34,9 +34,9 @@ public class Test_00000004_Phone extends InstrumentationTestCase {
 		if (marmot.getCurrentPackageName().equals(PACKAGE_NAME_KEY_GUARD)) {
 			marmot.move(Direction.UP);
 			marmot.waitFor(1);
-		}
+	    }
 	}
-
+		
 
 	public void test_00000004_Phone() throws Exception {
 		marmot.log("launch settings.");
@@ -44,25 +44,24 @@ public class Test_00000004_Phone extends InstrumentationTestCase {
 		marmot.waitFor(2);
 		checker.assertTrue("settings",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_Settings));
-
+		
 		UiObject2 othermode;
-		othermode = marmot.getUiObject(By.text("其他连接方式"));
+		othermode= marmot.getUiObject(By.text("其他连接方式"));
 		othermode.click();
 		marmot.waitFor(2);
-
+		
 		marmot.saveScreenshot("Flyclosed" + IMAGE_EXTENSION);
-
+		
 		UiObject2 flyopen;
-		flyopen = marmot.getUiObject(By.clazz("android.widget.CheckBox").res("android:id/checkbox"));
+		flyopen= marmot.getUiObject(By.clazz("android.widget.CheckBox").res("android:id/checkbox"));
 		flyopen.click();
 		marmot.waitFor(2);
-
-		if (!flyopen.isChecked()) {
-			marmot.saveScreenshot("Worng" + IMAGE_EXTENSION);
-		} else {
-			marmot.saveScreenshot("Right" + IMAGE_EXTENSION);
-		}
-
+	
+	    if(!flyopen.isChecked()){
+		 marmot.saveScreenshot("Worng" + IMAGE_EXTENSION);
+     }else
+    	 {marmot.saveScreenshot("Right" + IMAGE_EXTENSION);}
+	
 	}
 
 	@Override

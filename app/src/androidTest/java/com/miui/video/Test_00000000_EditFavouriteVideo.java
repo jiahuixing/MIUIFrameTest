@@ -8,11 +8,12 @@ import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 public class Test_00000000_EditFavouriteVideo extends InstrumentationTestCase {
+    private Marmot mm;
+    private Checker cc;
+
     private static final String PACKAGE_NAME = "com.miui.video";
     private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
             + "/.HomeActivity";
-    private Marmot mm;
-    private Checker cc;
 
     @Override
     public void setUp() throws Exception {
@@ -33,9 +34,9 @@ public class Test_00000000_EditFavouriteVideo extends InstrumentationTestCase {
 
     public void testEditFavouriteVideo() throws Exception {
         mm.launchActivity(HOME_ACTIVITY_NAME);
-
+        
         Lib_VideoUtil.addFavouriteVideo(mm);
-
+        
         mm.log("Step 1 : Open video.");
         mm.waitFor(1);
         mm.click(By.clazz(android.widget.TextView.class).text("我的收藏"));
@@ -74,6 +75,6 @@ public class Test_00000000_EditFavouriteVideo extends InstrumentationTestCase {
         cc.assertUiObejctExist(By.clazz(android.widget.TextView.class).res(
                 PACKAGE_NAME + ":id/empty_title"));
         cc.setTestrailResult("c1122586", true);
-    }
+        }
 
 }

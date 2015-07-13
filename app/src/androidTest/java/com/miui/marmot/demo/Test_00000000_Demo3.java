@@ -12,7 +12,7 @@ public class Test_00000000_Demo3 extends InstrumentationTestCase {
     public Checker cc;
 
     @Override
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception{
         super.setUp();
         mm = new Marmot(this);
         cc = new Checker(mm);

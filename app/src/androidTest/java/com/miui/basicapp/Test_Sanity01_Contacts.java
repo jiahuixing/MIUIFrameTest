@@ -9,14 +9,15 @@ import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 public class Test_Sanity01_Contacts extends InstrumentationTestCase {
+	public UiDevice mDevice;
+	public Marmot mm;
+	public Checker cc;
+
 	private static final String CONTACT_NAME = "Test";
 	private static final String CONTACT_COMPANY = "XIAOMI";
 	private static final String CONTACT_TITLE = "QA";
 	private static final String CONTACT_PHONE = "15910717150";
 	private static final String CONTACT_EMAIL = "819701562@qq.com";
-	public UiDevice mDevice;
-	public Marmot mm;
-	public Checker cc;
 
 	@Override
 	protected void setUp() throws Exception {

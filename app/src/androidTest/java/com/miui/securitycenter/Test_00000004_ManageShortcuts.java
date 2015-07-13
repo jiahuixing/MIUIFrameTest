@@ -13,21 +13,21 @@ import com.miui.marmot.lib.Marmot;
 import junit.framework.Assert;
 
 public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
-    public Marmot mm;
-    public Checker cc;
-    private Context mContext;
+	public Marmot mm;
+	public Checker cc;
+	private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
-        try {
+    protected void setUp() throws Exception{
+    	super.setUp();
+    	mm = new Marmot(this);
+    	cc = new Checker(mm);
+        try{
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -58,7 +58,7 @@ public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
         mm.waitFor(2);
 
         UiObject2 cleaner = mDevice.findObject(By.text("垃圾清理")).getParent().findObject(By.clazz("android.widget.CheckBox"));
-        if (cleaner != null) {
+        if (cleaner != null){
             assertTrue(cleaner.isChecked());
             cleaner.click();
             mm.waitFor(2);
@@ -67,7 +67,7 @@ public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        mm.pressBack(3);
+       mm.pressBack(3);
         super.tearDown();
     }
 }

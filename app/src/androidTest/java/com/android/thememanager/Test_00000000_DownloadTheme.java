@@ -12,28 +12,27 @@ import com.miui.marmot.lib.Marmot;
 
 
 public class Test_00000000_DownloadTheme extends InstrumentationTestCase {
-
+   
     public Marmot mm;
-    public Checker cc;
-    private Context mContext;
-    private UiDevice mDevice;
+	public Checker cc;
+	private Context mContext;
+	private UiDevice mDevice;
 
     @Override
     protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
+		super.setUp();
+		mm = new Marmot(this);
+		cc = new Checker(mm);
 
-        try {
-            super.setUp();
-            mContext = this.getInstrumentation().getContext();
-            mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //  下载主题
+		try {
+			super.setUp();
+			mContext = this.getInstrumentation().getContext();
+			mDevice = UiDevice.getInstance(getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+//  下载主题
     public void testDownlaadTheme() throws Exception {
         mDevice.pressHome();
         mm.waitFor(2);
@@ -43,13 +42,13 @@ public class Test_00000000_DownloadTheme extends InstrumentationTestCase {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
         mm.waitFor(15);
+       
 
-
-        UiObject2 theme1 = mDevice.findObject(By.clazz("android.widget.ImageView").res("com.android.thememanager:id/thumbnail"));
+       UiObject2 theme1 = mDevice.findObject(By.clazz("android.widget.ImageView").res("com.android.thememanager:id/thumbnail"));
         theme1.click();
         mContext.startActivity(intent);
         mm.waitFor(15);
-
+        
         UiObject2 theme2 = mDevice.findObject(By.clazz("android.widget.Button").res("com.android.thememanager:id/applyBtn"));
         theme2.click();
         mm.waitFor(15);

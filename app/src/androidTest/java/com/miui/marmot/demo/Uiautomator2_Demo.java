@@ -14,7 +14,7 @@ import android.util.Log;
 
 import junit.framework.Assert;
 
-public class Uiautomator2_Demo extends InstrumentationTestCase {
+public class Uiautomator2_Demo extends InstrumentationTestCase{
     private Context mContext;
     private UiDevice mDevice;
 
@@ -62,7 +62,7 @@ public class Uiautomator2_Demo extends InstrumentationTestCase {
         }
         sleep(3);
         UiObject2 amy = mDevice.findObject(By.text("amy"));
-        if (amy == null) {
+        if(amy == null) {
             Assert.assertTrue("amy not exist!", false);
         }
 
@@ -78,11 +78,11 @@ public class Uiautomator2_Demo extends InstrumentationTestCase {
 
         log("Step 5 : Move to dial.");
         int x2 = mDevice.getDisplayWidth() - 5;
-        int y2 = (int) (mDevice.getDisplayHeight() / 2);
+        int y2 = (int)(mDevice.getDisplayHeight() / 2);
         mDevice.swipe(5, y2, x2, y2, 6);
         sleep(2);
         UiObject2 dial = mDevice.findObject(By.text("拨号"));
-        if (dial == null) {
+        if(dial == null) {
             Assert.assertTrue("'dial' not exist!", false);
         }
 

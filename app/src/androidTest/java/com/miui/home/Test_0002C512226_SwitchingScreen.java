@@ -11,25 +11,25 @@ import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
 
-public class Test_0002C512226_SwitchingScreen extends InstrumentationTestCase {
+public class Test_0002C512226_SwitchingScreen extends InstrumentationTestCase{
 	public Marmot mm;
 	public Checker cc;
 
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception{
 		super.setUp();
 		mm = new Marmot(this);
 		cc = new Checker(mm);
 	}
-
+	
 
 	public void test_00000000_SwitchingScreen() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
-		int y2 = (int) (mm.getDisplayHeight() / 2);
+		int y2 = (int)(mm.getDisplayHeight() / 2);
 		mm.log("Step 1 : OpenUnlock");
-		int DisplayWidth;
-		DisplayWidth = mm.getDisplayWidth();
-		if (!mm.isScreenOn()) {
+		int DisplayWidth ;
+		DisplayWidth = mm.getDisplayWidth() ;
+		if(!mm.isScreenOn()){
 			mm.wakeUp();
 			mm.waitFor(1);
 			mm.move(Direction.UP);
@@ -58,26 +58,26 @@ public class Test_0002C512226_SwitchingScreen extends InstrumentationTestCase {
 
 		mm.log("Step 3: Set edit mode ");
 		UiScrollable listView = new UiScrollable(new UiSelector().className("android.widget.ListView"));
-		listView.scrollTextIntoView("其他高级设置");
-		mm.click(By.text("其他高级设置"));
-		mm.click(By.text("按键"));
-		if (mm.exist(By.text("启动近期任务"))) {
-			mm.click(By.text("启动近期任务"));
-			mm.click(By.text("显示菜单"));
-		}
-		mm.pressHome();
-
-		mm.log("Step 4:Slide the Desktop");
+	    listView.scrollTextIntoView("其他高级设置");
+	    mm.click(By.text("其他高级设置"));
+	    mm.click(By.text("按键"));
+	    if(mm.exist(By.text("启动近期任务"))){
+	    	mm.click(By.text("启动近期任务"));
+	  	    mm.click(By.text("显示菜单"));
+	    }
+	    mm.pressHome();
+	    
+	    mm.log("Step 4:Slide the Desktop");
 		mm.pressMenu();
 		mm.click(By.text("桌面整理"));
-		for (int i = 0; i < 4; i++) {
+		for(int i=0;i<4;i++){
 			mm.drag(x2, y2, 10, y2, 8);
-			//	mm.move(Direction.LEFT);
+		//	mm.move(Direction.LEFT);
 		}
 		mm.waitFor(2);
-		for (int i = 0; i < 4; i++) {
+		for(int i=0;i<4;i++){
 			mm.drag(10, y2, x2, y2, 8);
-			//	mm.move(Direction.RIGHT);
+		//	mm.move(Direction.RIGHT);
 		}
 		mm.log("Step 5 : Quit.");
 		mm.pressBack();

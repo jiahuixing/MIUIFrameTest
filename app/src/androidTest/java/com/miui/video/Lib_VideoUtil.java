@@ -17,7 +17,7 @@ public class Lib_VideoUtil {
 
         List<UiObject2> objestList = mm.getUiDevice().findObjects(
                 By.clazz(android.widget.ImageView.class).res(
-                        Lib_VideoConst.PACKAGE_NAME + ":id/poster"));
+                       Lib_VideoConst. PACKAGE_NAME + ":id/poster"));
         for (UiObject2 videoImage : objestList) {
             videoImage.click();
             mm.waitFor(2);
@@ -28,7 +28,7 @@ public class Lib_VideoUtil {
             if (addFavouriteButton != null && !addFavouriteButton.isSelected()) {
                 UiObject2 titleBar = mm.getUiObject(By.clazz(
                         android.widget.LinearLayout.class).res(
-                        Lib_VideoConst.PACKAGE_NAME + ":id/title_top"));
+                                Lib_VideoConst.PACKAGE_NAME + ":id/title_top"));
                 newFavouriteTitle = titleBar.findObject(
                         By.clazz(android.widget.TextView.class)).getText();
                 mm.log("Step 3 : Add Favourite Video.");
@@ -40,7 +40,7 @@ public class Lib_VideoUtil {
             mm.pressBack();
         }
         mm.pressBack();
-
+        
         return newFavouriteTitle;
     }
 }

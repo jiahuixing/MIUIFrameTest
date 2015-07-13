@@ -7,7 +7,7 @@ import android.util.Log;
 
 import junit.framework.Assert;
 
-public class Test_LockScreen_005_LeftUnlockCheck extends InstrumentationTestCase {
+public class Test_LockScreen_005_LeftUnlockCheck extends InstrumentationTestCase{
     private UiDevice mDevice;
 
     @Override
@@ -36,13 +36,13 @@ public class Test_LockScreen_005_LeftUnlockCheck extends InstrumentationTestCase
             e.printStackTrace();
         }
         sleep(3);
-        int x1 = (int) (mDevice.getDisplayWidth() / 4 * 3);
-        int x2 = (int) (mDevice.getDisplayWidth() / 4);
-        int y1 = (int) (mDevice.getDisplayHeight() / 4);
+        int x1 = (int)(mDevice.getDisplayWidth()/4*3);
+        int x2 = (int)(mDevice.getDisplayWidth()/4);
+        int y1 = (int)(mDevice.getDisplayHeight()/4);
         mDevice.drag(x1, y1, x2, y1, 10);
         sleep(5);
         String currentPackageName = mDevice.getCurrentPackageName();
-        Assert.assertEquals("com.android.camera", currentPackageName);
+        Assert.assertEquals("com.android.camera",currentPackageName);
 
     }
 

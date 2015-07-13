@@ -52,7 +52,7 @@ public class Lib_Frame_Utils {
 	}
 
 	public static void launchActivityNoHistory(Context context,
-											   String activityName) {
+			String activityName) {
 		Intent intent = new Intent();
 		String pkgName = activityName.split("/")[0];
 		String atyName = activityName.split("/")[1];
@@ -115,7 +115,7 @@ public class Lib_Frame_Utils {
 	}
 
 	public static void calculateNumber(Marmot marmot, int firstNumber,
-									   int secondNumber, String operation) {
+			int secondNumber, String operation) {
 		marmot.log(String.format("calculateNumber: %s %s %s = ?", firstNumber,
 				operation, secondNumber));
 		UiObject2 first, second, operate, equal;

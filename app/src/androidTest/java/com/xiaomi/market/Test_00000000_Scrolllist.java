@@ -1,77 +1,51 @@
 package com.xiaomi.market;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.Direction;
 import android.test.InstrumentationTestCase;
-import android.util.Log;
 
-import junit.framework.Assert;
-
+import com.miui.marmot.lib.Checker;
+import com.miui.marmot.lib.Marmot;
 public class Test_00000000_Scrolllist extends InstrumentationTestCase {
-    private Context mContext;
-    private UiDevice mDevice;
-
-    @Override
-    protected void setUp() {
-        try {
-            super.setUp();
-            mContext = this.getInstrumentation().getContext();
-            mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void testmarketscroll() {
-        log("Step 1 : Launch supermarket Activity.");
-        mDevice.pressHome();
-        sleep(1);
-        Intent intent = new Intent();
-        intent.setClassName("com.xiaomi.market",
-                "com.xiaomi.market.ui.MarketTabActivity");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
-        sleep(5);
-        String currentPackageName = mDevice.getCurrentPackageName();
-        Assert.assertEquals(currentPackageName, "com.xiaomi.market");
-
-        log("Step 2 : Change Tab.");
-        mDevice.findObject(By.clazz("android.widget.TextView").text("鎺掕")).click();
-        sleep(5);
-        mDevice.swipe(545, 1800, 545, 884, 5);
-        sleep(5);
-        mDevice.findObject(By.clazz("android.widget.TextView").text("鍒嗙被")).click();
-        sleep(5);
-        mDevice.findObject(By.clazz("android.widget.TextView").res("com.xiaomi.market:id/category_title")).click();
-        sleep(5);
-        mDevice.findObject(By.clazz("android.widget.TextView").text("鎺掕")).click();
-        sleep(5);
-        mDevice.findObject(By.clazz("android.widget.TextView").text("鍒嗙被")).click();
-        sleep(5);
-
-        log("Step 3 : Quit.");
-        mDevice.pressBack();
-        mDevice.pressBack();
-        mDevice.pressBack();
-        mDevice.pressHome();
-    }
-
-    private void log(String message) {
-        Log.i("MIUIAUTOTest", message);
-    }
-
-    private void sleep(long seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-
-    }
+public Marmot mm;
+public Checker cc;
+@Override
+protected void setUp() throws Exception {
+super.setUp();
+mm = new Marmot(this);
+cc = new Checker(mm);
+}
+public void test_Scrolllist() throws Exception {
+mm.log("Step 1 : Launch Market Activity.");
+mm.pressHome();
+mm.launchActivity("com.xiaomi.market/com.xiaomi.market.ui.MarketTabActivity");
+mm.saveScreenshot("精品列表。png");
+mm.waitFor(5);
+mm.log("Step 2 : Scroll and Change Tab.");
+mm.scrollListViewToEnd();
+mm.waitFor(5);
+mm.click(By.text("排行"));
+mm.waitFor(5);
+mm.drag(300, 1000, 300, 300, 6);
+mm.waitFor(5);
+mm.click(By.text("分类"));
+mm.waitFor(5);
+mm.click(By.text("实用工具"));
+mm.waitFor(5);
+mm.scrollListViewToEnd();
+mm.waitFor(5);
+mm.click(By.text("排行"));
+mm.waitFor(5);
+mm.move(Direction.LEFT);
+mm.saveScreenshot("精品列表。png");
+cc.setTestrailResult("c512888", true);
+mm.log("Step 3 : Quit.");
+mm.pressBack();
+mm.pressHome();
+}
+@Override
+protected void tearDown() throws Exception {
+mm.pressBack(3);
+super.tearDown();
+}
 }

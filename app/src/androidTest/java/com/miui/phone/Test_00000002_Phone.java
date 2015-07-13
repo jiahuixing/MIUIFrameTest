@@ -92,7 +92,7 @@ public class Test_00000002_Phone extends InstrumentationTestCase {
 		checker.assertTrue("incallui",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_IN_CALL_UI));
 		marmot.waitFor(5);
-
+		
 		marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
 
 		UiObject2 numberclosed;
@@ -108,14 +108,16 @@ public class Test_00000002_Phone extends InstrumentationTestCase {
 		numberopen.click();
 		marmot.waitFor(1);
 		marmot.saveScreenshot("numberopen" + IMAGE_EXTENSION);
-
-		UiObject2 hangOff;
+		
+	    UiObject2 hangOff;
 		hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.incallui:id/endButton"));
 		hangOff.click();
 		marmot.waitFor(2);
 	}
+		
 
+		
 
 	private boolean dialNumber(String phoneNumber) {
 		UiObject2 dialNumber;

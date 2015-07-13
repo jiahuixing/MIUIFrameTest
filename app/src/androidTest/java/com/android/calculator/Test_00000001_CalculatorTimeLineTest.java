@@ -18,39 +18,39 @@ import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 public class Test_00000001_CalculatorTimeLineTest extends
-        InstrumentationTestCase {
+		InstrumentationTestCase {
 
-    public Marmot marmot;
-    public Checker checker;
-    public UiDevice uiDevice;
-    public Context context;
+	public Marmot marmot;
+	public Checker checker;
+	public UiDevice uiDevice;
+	public Context context;
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        marmot = new Marmot(this);
-        checker = new Checker(marmot);
-        context = marmot.getContext();
-        Lib_Frame_Utils.unLock(marmot);
-    }
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+		marmot = new Marmot(this);
+		checker = new Checker(marmot);
+		context = marmot.getContext();
+		Lib_Frame_Utils.unLock(marmot);
+	}
 
-    public void test_00000000_CalculatorTimeLineTest() throws Exception {
-        int testStep = 0;
-        testStep += 1;
-        marmot.log(String.format("%s. launch calculator.", testStep));
-        marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
-        // Lib_Frame_Utils.launchActivityNoHistory(context,
-        // Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
-        marmot.waitFor(2);
-        checker.assertTrue(
-                "launch",
-                marmot.getCurrentPackageName().equals(
-                        Lib_Frame_Constants.PACKAGE_NAME_CALCULATOR));
-    }
+	public void test_00000000_CalculatorTimeLineTest() throws Exception {
+		int testStep = 0;
+		testStep += 1;
+		marmot.log(String.format("%s. launch calculator.", testStep));
+		marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
+		// Lib_Frame_Utils.launchActivityNoHistory(context,
+		// Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
+		// marmot.waitFor(2);
+		checker.assertTrue(
+				"launch",
+				marmot.getCurrentPackageName().equals(
+						Lib_Frame_Constants.PACKAGE_NAME_CALCULATOR));
+	}
 
-    @Override
-    public void tearDown() throws Exception {
-        Lib_Frame_Utils.backHome(marmot);
-        super.tearDown();
-    }
+	@Override
+	public void tearDown() throws Exception {
+		Lib_Frame_Utils.backHome(marmot);
+		super.tearDown();
+	}
 }

@@ -16,23 +16,23 @@ import com.miui.marmot.lib.Marmot;
 
 public class Test_00000000_Backup extends InstrumentationTestCase {
 
-    public Marmot marmot;
-    public Checker checker;
-    public UiDevice uiDevice;
+	public Marmot marmot;
+	public Checker checker;
+	public UiDevice uiDevice;
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-    }
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+	}
 
-    public void test_Backup() throws Exception {
-        int testStep = 0;
-        testStep += 1;
-        marmot.log(String.format("%s. launch backup.", testStep));
-    }
+	public void test_Backup() throws Exception {
+		int testStep = 0;
+		testStep += 1;
+		marmot.log(String.format("%s. launch backup.", testStep));
+	}
 
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-    }
+	@Override
+	public void tearDown() throws Exception {
+		super.tearDown();
+	}
 }

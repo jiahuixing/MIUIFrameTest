@@ -13,22 +13,22 @@ import com.miui.marmot.lib.Marmot;
 import junit.framework.Assert;
 
 public class Test_00000005_ShowMenu extends InstrumentationTestCase {
-
-    public Marmot mm;
-    public Checker cc;
-    private Context mContext;
+	
+	public Marmot mm;
+	public Checker cc;
+	private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
-        try {
+    protected void setUp() throws Exception{
+    	super.setUp();
+    	mm = new Marmot(this);
+		cc = new Checker(mm);
+        try{
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -54,7 +54,7 @@ public class Test_00000005_ShowMenu extends InstrumentationTestCase {
         mm.log("Step 2 : Show menu in notification shade.");
         UiObject2 showBox = mDevice.findObject(By.clazz("android.widget.CheckBox").res("android:id/checkbox"));
         Boolean isShow = showBox.isChecked();
-        if (!isShow) {
+        if (!isShow ){
             showBox.click();
             mm.waitFor(3);
             isShow = showBox.isChecked();
@@ -63,9 +63,10 @@ public class Test_00000005_ShowMenu extends InstrumentationTestCase {
     }
 
 
+
     @Override
     protected void tearDown() throws Exception {
-        mm.pressBack(3);
+    	mm.pressBack(3);
         super.tearDown();
     }
 

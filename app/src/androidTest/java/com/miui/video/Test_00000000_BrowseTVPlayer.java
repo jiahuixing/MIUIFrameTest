@@ -12,11 +12,12 @@ import java.util.List;
 
 public class Test_00000000_BrowseTVPlayer extends InstrumentationTestCase {
 
+    private Marmot mm;
+    private Checker cc;
+
     private static final String PACKAGE_NAME = "com.miui.video";
     private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
             + "/.HomeActivity";
-    private Marmot mm;
-    private Checker cc;
 
     @Override
     public void setUp() throws Exception {

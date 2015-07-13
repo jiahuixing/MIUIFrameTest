@@ -12,22 +12,22 @@ import com.miui.marmot.lib.Marmot;
 import junit.framework.Assert;
 
 public class Test_00000001_CancelScanning extends InstrumentationTestCase {
-
-    public Marmot mm;
-    public Checker cc;
-    private Context mContext;
+	
+	public Marmot mm;
+	public Checker cc;
+	private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
-        try {
+    protected void setUp() throws Exception{
+    	super.setUp();
+    	mm = new Marmot(this);
+		cc = new Checker(mm);
+        try{
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -56,7 +56,7 @@ public class Test_00000001_CancelScanning extends InstrumentationTestCase {
 
     @Override
     protected void tearDown() throws Exception {
-        mm.pressBack(3);
+    	mm.pressBack(3);
         super.tearDown();
     }
 }

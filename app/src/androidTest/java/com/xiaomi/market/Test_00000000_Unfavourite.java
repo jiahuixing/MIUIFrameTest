@@ -41,11 +41,9 @@ public class Test_00000000_Unfavourite extends InstrumentationTestCase {
 
         mDevice.findObject(By.clazz("android.widget.TextView").res("com.xiaomi.market:id/text").text("鎴戠殑")).click();
         sleep(8);
-        mDevice.click(545, 1000);
-        ;
+        mDevice.click(545, 1000);;
         sleep(5);
-        mDevice.findObject(By.textStartsWith("浼戦棽")).longClick();
-        ;
+        mDevice.findObject(By.textStartsWith("浼戦棽")).longClick();;
         sleep(5);
         mDevice.findObject(By.clazz("android.widget.ImageView").res("com.xiaomi.market:id/first_button")).click();
         sleep(5);

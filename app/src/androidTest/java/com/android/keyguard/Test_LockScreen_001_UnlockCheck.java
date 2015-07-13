@@ -7,7 +7,7 @@ import android.util.Log;
 
 import junit.framework.Assert;
 
-public class Test_LockScreen_001_UnlockCheck extends InstrumentationTestCase {
+public class Test_LockScreen_001_UnlockCheck extends InstrumentationTestCase{
     private UiDevice mDevice;
 
     @Override
@@ -36,14 +36,14 @@ public class Test_LockScreen_001_UnlockCheck extends InstrumentationTestCase {
             e.printStackTrace();
         }
         sleep(3);
-        int x1 = (int) (mDevice.getDisplayWidth() / 2);
-        int y1 = (int) (mDevice.getDisplayHeight() / 3 * 2);
-        int y2 = (int) (mDevice.getDisplayHeight() / 3);
+        int x1 = (int)(mDevice.getDisplayWidth()/2);
+        int y1 = (int)(mDevice.getDisplayHeight()/3*2);
+        int y2 = (int)(mDevice.getDisplayHeight()/3);
         mDevice.drag(x1, y1, x1, y2, 10);
         mDevice.pressHome();
         sleep(5);
         String currentPackageName = mDevice.getCurrentPackageName();
-        Assert.assertEquals("com.miui.home", currentPackageName);
+        Assert.assertEquals("com.miui.home",currentPackageName);
 
     }
 

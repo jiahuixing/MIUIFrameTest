@@ -12,28 +12,27 @@ import com.miui.marmot.lib.Marmot;
 
 
 public class Test_00000000_CopyTheme extends InstrumentationTestCase {
-
+   
     public Marmot mm;
-    public Checker cc;
-    private Context mContext;
-    private UiDevice mDevice;
+	public Checker cc;
+	private Context mContext;
+	private UiDevice mDevice;
 
     @Override
     protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
+		super.setUp();
+		mm = new Marmot(this);
+		cc = new Checker(mm);
 
-        try {
-            super.setUp();
-            mContext = this.getInstrumentation().getContext();
-            mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //  备份主题
+		try {
+			super.setUp();
+			mContext = this.getInstrumentation().getContext();
+			mDevice = UiDevice.getInstance(getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+//  备份主题
     public void testCopyTheme() throws Exception {
         mDevice.pressHome();
         mm.waitFor(2);
@@ -43,11 +42,11 @@ public class Test_00000000_CopyTheme extends InstrumentationTestCase {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
         mm.waitFor(5);
-
+       
         UiObject2 theme8 = mDevice.findObject(By.clazz("android.widget.TextView").text("混搭"));
         theme8.click();
         mm.waitFor(10);
-
+        
         UiObject2 theme9 = mDevice.findObject(By.clazz("android.widget.Button").text("更多"));
         theme9.click();
         mm.waitFor(5);

@@ -211,42 +211,42 @@ public class Test_00000000_Calculator extends InstrumentationTestCase {
 			randomOperate = random.nextInt(operateCount);
 			marmot.log(String.format("randomOperate: %s", randomOperate));
 			switch (randomOperate) {
-				case 0:
-					resultInt += randomNumber;
-					addition.click();
-					marmot.waitFor(2);
-					numberButton.click();
-					marmot.waitFor(2);
-					equal.click();
-					marmot.waitFor(2);
-					break;
-				case 1:
-					resultInt -= randomNumber;
-					subtraction.click();
-					marmot.waitFor(2);
-					numberButton.click();
-					marmot.waitFor(2);
-					equal.click();
-					marmot.waitFor(2);
-					break;
-				case 2:
-					resultInt *= randomNumber;
-					multiplication.click();
-					marmot.waitFor(2);
-					numberButton.click();
-					marmot.waitFor(2);
-					equal.click();
-					marmot.waitFor(2);
-					break;
-				case 3:
-					resultInt /= randomNumber;
-					subtraction.click();
-					marmot.waitFor(2);
-					numberButton.click();
-					marmot.waitFor(2);
-					equal.click();
-					marmot.waitFor(2);
-					break;
+			case 0:
+				resultInt += randomNumber;
+				addition.click();
+				marmot.waitFor(2);
+				numberButton.click();
+				marmot.waitFor(2);
+				equal.click();
+				marmot.waitFor(2);
+				break;
+			case 1:
+				resultInt -= randomNumber;
+				subtraction.click();
+				marmot.waitFor(2);
+				numberButton.click();
+				marmot.waitFor(2);
+				equal.click();
+				marmot.waitFor(2);
+				break;
+			case 2:
+				resultInt *= randomNumber;
+				multiplication.click();
+				marmot.waitFor(2);
+				numberButton.click();
+				marmot.waitFor(2);
+				equal.click();
+				marmot.waitFor(2);
+				break;
+			case 3:
+				resultInt /= randomNumber;
+				subtraction.click();
+				marmot.waitFor(2);
+				numberButton.click();
+				marmot.waitFor(2);
+				equal.click();
+				marmot.waitFor(2);
+				break;
 			}
 		}
 		resultString = calculatorResult.getText();

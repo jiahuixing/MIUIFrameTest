@@ -18,21 +18,21 @@ import junit.framework.Assert;
  * Created by Dell on 2015/7/1.
  */
 public class Test_00000003_CleanRubishCache extends InstrumentationTestCase {
-    public Marmot mm;
-    public Checker cc;
+	public Marmot mm;
+	public Checker cc;
     private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
-        try {
+    protected void setUp() throws Exception{
+    	super.setUp();
+    	mm = new Marmot(this);
+    	cc = new Checker(mm);
+        try{
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -58,7 +58,7 @@ public class Test_00000003_CleanRubishCache extends InstrumentationTestCase {
         mDevice.findObject(By.text("缓存垃圾")).click();
         mm.waitFor(2);
         UiObject2 clearUp = mDevice.findObject(By.text("一键清理"));
-        if (clearUp != null && clearUp.isEnabled()) {
+        if (clearUp!=null && clearUp.isEnabled()){
             clearUp.click();
             mm.waitFor(5);
         }

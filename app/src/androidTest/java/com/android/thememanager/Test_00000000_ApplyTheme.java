@@ -12,28 +12,27 @@ import com.miui.marmot.lib.Marmot;
 
 
 public class Test_00000000_ApplyTheme extends InstrumentationTestCase {
-
+   
     public Marmot mm;
-    public Checker cc;
-    private Context mContext;
-    private UiDevice mDevice;
+	public Checker cc;
+	private Context mContext;
+	private UiDevice mDevice;
 
     @Override
     protected void setUp() throws Exception {
-        super.setUp();
-        mm = new Marmot(this);
-        cc = new Checker(mm);
+		super.setUp();
+		mm = new Marmot(this);
+		cc = new Checker(mm);
 
-        try {
-            super.setUp();
-            mContext = this.getInstrumentation().getContext();
-            mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //  应用主题
+		try {
+			super.setUp();
+			mContext = this.getInstrumentation().getContext();
+			mDevice = UiDevice.getInstance(getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+//  应用主题   
     public void testApplyTheme() throws Exception {
         mDevice.pressHome();
         mm.waitFor(2);
@@ -43,7 +42,7 @@ public class Test_00000000_ApplyTheme extends InstrumentationTestCase {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
         mm.waitFor(5);
-
+       
         UiObject2 theme3 = mDevice.findObject(By.clazz("android.widget.TextView").text("本地"));
         theme3.click();
         mm.waitFor(10);

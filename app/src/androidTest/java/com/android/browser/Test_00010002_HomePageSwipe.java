@@ -52,14 +52,14 @@ public class Test_00010002_HomePageSwipe extends InstrumentationTestCase {
 
 	@Override
 	protected void tearDown() throws Exception {
-		if (mDevice.findObject(By.clazz("android.widget.ImageButton").res("com.android.browser:id/action_more")) != null) {
+		if (mDevice.findObject(By.clazz("android.widget.ImageButton").res("com.android.browser:id/action_more"))!= null) {
 			// log("pass");
 			mDevice.findObject(By.clazz("android.widget.ImageButton").res("com.android.browser:id/action_more")).click();
 			mm.waitFor(3);
 			mDevice.findObject(By.clazz("android.widget.TextView").textContains("退出")).click();
 			mm.waitFor(3);
 		}
-
+		
 		mm.pressBack(3);
 		super.tearDown();
 	}

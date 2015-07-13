@@ -1,86 +1,60 @@
 package com.xiaomi.market;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Rect;
 import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.UiDevice;
 import android.test.InstrumentationTestCase;
-import android.util.Log;
 
 import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
-import junit.framework.Assert;
 public class Test_00000000_Appuninstall extends InstrumentationTestCase {
-
-    public Marmot mm;
-    public Checker cc;
-    private Context mContext;
-    private UiDevice mDevice;
-
-    @Override
-    protected void setUp() {
-        try {
-            super.setUp();
-            mm = new Marmot(this);
-            cc = new Checker(mm);
-            mContext = this.getInstrumentation().getContext();
-            mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void testappuninstall() {
-        log("Step 1 : Launch supermarket Activity.");
-        mDevice.pressHome();
-        sleep(1);
-        Intent intent = new Intent();
-        intent.setClassName("com.xiaomi.market",
-                "com.xiaomi.market.ui.MarketTabActivity");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
-        sleep(5);
-        String currentPackageName = mDevice.getCurrentPackageName();
-        Assert.assertEquals(currentPackageName, "com.xiaomi.market");
-
-        log("Step 2 : Enter myaccount.");
-
-        mDevice.findObject(By.clazz("android.widget.TextView").res("com.xiaomi.market:id/text").text("鎴戠殑")).click();
-        sleep(8);
-        mDevice.click(545, 684);
-        ;
-        sleep(5);
-        Rect bounds = mDevice.findObject(By.textStartsWith("瀹夎")).getVisibleBounds();
-        mDevice.drag(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY(), 8);
-        sleep(5);
-        mDevice.findObject(By.text("鍒犻櫎")).click();
-        sleep(2);
-        mDevice.findObject(By.clazz("android.widget.Button").text("鍒犻櫎閫変腑搴旂敤")).click();
-        sleep(2);
-
-        log("Step 3 : Quit.");
-        mDevice.pressBack();
-        mDevice.pressBack();
-        mDevice.pressBack();
-        mDevice.pressHome();
-    }
-
-    private void log(String message) {
-        Log.i("MIUIAUTOTest", message);
-    }
-
-    private void sleep(long seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-
-    }
+public Marmot mm;
+public Checker cc;
+@Override
+protected void setUp() throws Exception {
+super.setUp();
+mm = new Marmot(this);
+cc = new Checker(mm);
+}
+public void test_uninstall() throws Exception {
+mm.log("Step 1 : Launch Market Activity and Enter uninstall list.");
+mm.pressHome();
+mm.launchActivity("com.xiaomi.market/com.xiaomi.market.ui.MarketTabActivity");
+mm.saveScreenshot("精品列表.png");
+mm.waitFor(5);
+mm.click(By.clazz("android.widget.TextView").text("我的"));
+mm.waitFor(3);
+mm.click(545, 450);
+mm.saveScreenshot("应用卸载界面.png");
+mm.log("Step 2 : click one app.");
+mm.click(545, 450);
+mm.waitFor(3);
+mm.saveScreenshot("卸载应用信息界面。png");
+mm.log("Step 3 : back.");
+mm.pressBack();
+mm.waitFor(3);
+mm.log("Step 4 : longpress one app and delete.");
+mm.longClick(By.clazz("android.widget.TextView").text("大众点评"));
+mm.waitFor(3);
+mm.click(By.text("删除"));
+mm.waitFor(3);
+mm.log("Step 5 : cancel delete and delete.");
+mm.click(By.text("取消"));
+mm.waitFor(3);
+mm.click(By.text("删除"));
+mm.waitFor(3);
+mm.click(By.text("删除选中应用"));
+mm.waitFor(10);
+cc.assertTextNotExist("大众点评");
+mm.waitFor(10);
+mm.saveScreenshot("应用卸载后列表界面。png");
+cc.setTestrailResult("c512908", true);
+mm.log("Step 6 : Quit.");
+mm.pressBack();
+mm.pressHome();
+}
+@Override
+protected void tearDown() throws Exception {
+mm.pressBack(3);
+super.tearDown();
+}
 }

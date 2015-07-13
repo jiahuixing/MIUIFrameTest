@@ -39,7 +39,7 @@ public class Test_00000000_Pauseandcontinue extends InstrumentationTestCase {
 
         log("Step 2 : Enter app information and app operation.");
 
-        mDevice.click(545, 1480);
+        mDevice.click(545,1480);
         sleep(5);
         mDevice.findObject(By.clazz("android.widget.Button").text("瀹夎")).click();
         sleep(10);

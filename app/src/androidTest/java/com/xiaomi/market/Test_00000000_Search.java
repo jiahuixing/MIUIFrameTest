@@ -12,12 +12,12 @@ import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
 
-public class Test_00000000_Search extends InstrumentationTestCase {
-    public Marmot mm;
-    public Checker cc;
+public class Test_00000000_Search extends InstrumentationTestCase{
     private Context mContext;
     private UiDevice mDevice;
-
+    public Marmot mm;
+    public Checker cc;
+    
     @Override
     protected void setUp() {
         mm = new Marmot(this);
