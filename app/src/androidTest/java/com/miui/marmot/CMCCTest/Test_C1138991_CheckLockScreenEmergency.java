@@ -29,25 +29,32 @@ public class Test_C1138991_CheckLockScreenEmergency extends InstrumentationTestC
     	mm.wakeUp();
     	mm.waitFor(3);
     	mm.log("检查是否有紧急呼叫");
-    	cc.assertTextExist("紧急呼叫");
-    	mm.log("尝试进行紧急呼叫");
-    	mm.click(By.text("紧急呼叫"));
-    	cc.assertTextExist("紧急呼救");
-    	mm.click(By.desc("一"));
-        mm.click(By.desc("一"));
-        mm.click(By.desc("二"));
-        mm.click(By.desc("拨号"));
-        mm.waitFor(2);
-        cc.assertTextExist("紧急呼叫中心");
-        mm.waitFor(2);
-        mm.click(By.res("com.android.incallui", "endButton"));
-        mm.waitFor(2);
-    	mm.move(Direction.UP);
-    	mm.pressHome();
-    	  	
-    	    	    	    	  	
-    }   
-    
+    	if(mm.exist(By.text("紧急呼叫"))){
+    		mm.log("尝试进行紧急呼叫");
+        	mm.click(By.text("紧急呼叫"));
+        	cc.assertTextExist("紧急呼救");
+        	mm.click(By.desc("一"));
+            mm.click(By.desc("一"));
+            mm.click(By.desc("二"));
+            mm.click(By.desc("拨号"));
+            mm.waitFor(2);
+            cc.assertTextExist("紧急呼叫中心");
+            mm.waitFor(2);
+            mm.click(By.res("com.android.incallui", "endButton"));
+            mm.waitFor(2);
+            mm.move(Direction.UP);
+            mm.pressHome();
+    	}
+    	else {
+    		mm.waitFor(2);
+            mm.move(Direction.UP);
+            mm.pressHome();
+            mm.log("没有紧急呼叫");
+            cc.assertTextExist("此处只为返回一个错误值");
+    	}
+
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

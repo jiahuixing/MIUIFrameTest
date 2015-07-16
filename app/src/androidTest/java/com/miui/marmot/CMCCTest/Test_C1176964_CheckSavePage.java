@@ -16,7 +16,7 @@ public class Test_C1176964_CheckSavePage extends InstrumentationTestCase{
         mm = new Marmot(this);
         cc = new Checker(mm);
     }
-    
+
     public void test_C1176964_CheckSavePage() throws Exception {
     	mm.log("打开浏览器");
     	mm.pressHome();
@@ -41,14 +41,11 @@ public class Test_C1176964_CheckSavePage extends InstrumentationTestCase{
     	mm.click(By.text("保存网页"));
     	mm.waitFor(1);
     	cc.assertTextExist("小米商城");
-    	    
-    	   	    	  	
-    }    
-    
-    
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();
     }
-	
+    
 }

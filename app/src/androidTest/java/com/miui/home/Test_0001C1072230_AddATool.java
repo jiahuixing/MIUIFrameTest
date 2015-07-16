@@ -22,7 +22,6 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase{
 		cc = new Checker(mm);
 	}
 
-
 	public void test_00000001_AddATool() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
 		int y2 = (int)(mm.getDisplayHeight() / 2);
@@ -94,7 +93,6 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase{
 			mm.waitFor(1);
 			mm.saveScreenshot("Calculate.png");
 		}
-		
 		if(DisplayWidth == 1440){
 			mm.click(430, 450); //点击清除
 			mm.waitFor(1);
@@ -117,7 +115,6 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase{
 			mm.saveScreenshot("Calculate.png");
 		}
 
-
 		mm.log("Step 6 : Quit.");
 		mm.pressBack();
 		mm.pressBack();
@@ -131,5 +128,4 @@ public class Test_0001C1072230_AddATool extends InstrumentationTestCase{
 		mm.pressBack(3);
 		super.tearDown();
 	}
-
 }

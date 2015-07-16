@@ -10,6 +10,7 @@ package com.miui.frame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.Direction;
 import android.support.test.uiautomator.UiCollection;
@@ -38,12 +39,11 @@ public class Lib_Frame_Utils {
 		}
 	}
 
-	public static void backHome(Marmot marmot) {
+	public static void backToPackage(Marmot marmot, String packageName) {
 		String currentPackageName;
 		while (true) {
 			currentPackageName = marmot.getCurrentPackageName();
-			if (currentPackageName
-					.equals(Lib_Frame_Constants.PACKAGE_NAME_HOME)) {
+			if (currentPackageName.equals(packageName)) {
 				break;
 			}
 			marmot.pressBack();
@@ -97,6 +97,13 @@ public class Lib_Frame_Utils {
 			marmot.waitFor(1);
 		}
 		return false;
+	}
+
+	public static void longClick(Marmot marmot, UiObject2 uiObject2) {
+		Rect bounds = uiObject2.getVisibleBounds();
+		marmot.drag(bounds.centerX(), bounds.centerY(), bounds.centerX(),
+				bounds.centerY(), Lib_Frame_Constants.DRAG_STEPS);
+		marmot.waitFor(2);
 	}
 
 	public static boolean exist(UiObject2 uiObject2) {
@@ -249,6 +256,17 @@ public class Lib_Frame_Utils {
 				dialNumberButton.click();
 				marmot.waitFor(1);
 			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean isFMAvailable(Marmot marmot) {
+		String productName = marmot.getProductName();
+		for (int i = 0; i < Lib_Frame_Constants.PRODUCT_NAME_NO_FM.size(); i++) {
+			if (productName.equals(Lib_Frame_Constants.PRODUCT_NAME_NO_FM
+					.get(i))) {
 				return false;
 			}
 		}

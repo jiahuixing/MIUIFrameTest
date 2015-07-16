@@ -22,18 +22,12 @@ public class Test_C1138989_CheckWeatherConnectionAlert extends InstrumentationTe
     	mm.log("打开天气");
     	mm.pressHome();
     	mm.launchActivity("com.miui.weather2/com.miui.weather2.ActivityWeatherMain");
-    	
     	mm.log("判断是否有联网提醒");
     	cc.assertTextExist("联网提示");
     	cc.assertTextExist("需要联网获取天气信息，有可能产生流量");
-    	
     	mm.click(By.res("android:id/button2"));
-    	
-    	
-    	    	  	
-    }   
-    
-    
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

@@ -22,7 +22,6 @@ public class Test_0002C512226_SwitchingScreen extends InstrumentationTestCase{
 		cc = new Checker(mm);
 	}
 	
-
 	public void test_00000000_SwitchingScreen() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
 		int y2 = (int)(mm.getDisplayHeight() / 2);
@@ -92,6 +91,4 @@ public class Test_0002C512226_SwitchingScreen extends InstrumentationTestCase{
 		mm.pressBack(3);
 		super.tearDown();
 	}
-
-
 }

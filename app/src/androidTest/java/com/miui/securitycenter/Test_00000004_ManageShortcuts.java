@@ -1,7 +1,7 @@
+
 package com.miui.securitycenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject2;
@@ -12,22 +12,23 @@ import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
 
+//C507265
 public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
-	public Marmot mm;
-	public Checker cc;
-	private Context mContext;
+    public Marmot mm;
+    public Checker cc;
+    private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception{
-    	super.setUp();
-    	mm = new Marmot(this);
-    	cc = new Checker(mm);
-        try{
+    protected void setUp() throws Exception {
+        super.setUp();
+        mm = new Marmot(this);
+        cc = new Checker(mm);
+        try {
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -36,10 +37,11 @@ public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
         mm.log("Step 1 : Launch contacts Activity.");
         mDevice.pressHome();
         mm.waitFor(1);
-        Intent intent = new Intent();
-        intent.setClassName("com.miui.securitycenter", "com.miui.securitycenter.MainActivity");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
+        mm.launchActivity("com.miui.securitycenter/com.miui.securitycenter.MainActivity");
+        mm.waitFor(2);
+        if (mm.exist(By.text("确定"))) {
+            mm.click(By.text("确定"));
+        }
         mm.waitFor(5);
         String currentPackageName = mDevice.getCurrentPackageName();
         Assert.assertEquals(currentPackageName, "com.miui.securitycenter");
@@ -52,13 +54,16 @@ public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
         mm.waitFor(2);
 
         mm.log("Step 3 : Delete shortcuts");
-        mDevice.findObject(By.clazz("android.widget.Button").res("com.miui.securitycenter:id/settings")).click();
+        mDevice.findObject(
+                By.clazz("android.widget.Button").res("com.miui.securitycenter:id/settings"))
+                .click();
         mm.waitFor(2);
         mDevice.findObject(By.text("添加桌面快捷方式")).click();
         mm.waitFor(2);
 
-        UiObject2 cleaner = mDevice.findObject(By.text("垃圾清理")).getParent().findObject(By.clazz("android.widget.CheckBox"));
-        if (cleaner != null){
+        UiObject2 cleaner = mDevice.findObject(By.text("垃圾清理")).getParent()
+                .findObject(By.clazz("android.widget.CheckBox"));
+        if (cleaner != null) {
             assertTrue(cleaner.isChecked());
             cleaner.click();
             mm.waitFor(2);
@@ -67,7 +72,7 @@ public class Test_00000004_ManageShortcuts extends InstrumentationTestCase {
 
     @Override
     protected void tearDown() throws Exception {
-       mm.pressBack(3);
+        mm.pressBack(3);
         super.tearDown();
     }
 }

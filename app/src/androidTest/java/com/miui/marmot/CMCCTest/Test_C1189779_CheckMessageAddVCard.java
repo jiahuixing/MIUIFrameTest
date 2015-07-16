@@ -26,9 +26,9 @@ public class Test_C1189779_CheckMessageAddVCard extends InstrumentationTestCase{
     	mm.log("找到短信设置");
     	mm.waitFor(2);
     	UiScrollable list = new UiScrollable(new UiSelector().className("android.widget.ListView"));
-           UiObject mms;
-           mms  = list.getChildByText(new UiSelector().className("android.widget.TextView"), "短信", true);
-           mms.click();
+    	UiObject mms;
+    	mms  = list.getChildByText(new UiSelector().className("android.widget.TextView"), "短信", true);
+    	mms.click();
         mm.waitFor(2);
     	UiScrollable list1 = new UiScrollable(new UiSelector().className("android.widget.ListView"));
         UiObject Gaoji;
@@ -37,12 +37,11 @@ public class Test_C1189779_CheckMessageAddVCard extends InstrumentationTestCase{
         mm.waitFor(2);
         UiScrollable list2 = new UiScrollable(new UiSelector().className("android.widget.ListView"));
         list2.getChildByText(new UiSelector().className("android.widget.CheckedTextView"), "使用vCard文件发送", true);
-                    	    	    	    	  	
-    }   
-    
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();
     }
-    
+
 }

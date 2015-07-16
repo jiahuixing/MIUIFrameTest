@@ -22,7 +22,6 @@ public class Test_0003C1072305_ScreenSwitching extends InstrumentationTestCase{
 		cc = new Checker(mm);
 	}
 	
-
 	public void test_00000001_ScreenSwitching() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
 		int y2 = (int)(mm.getDisplayHeight() / 2);
@@ -32,8 +31,7 @@ public class Test_0003C1072305_ScreenSwitching extends InstrumentationTestCase{
 		if(!mm.isScreenOn()){
 			mm.wakeUp();
 			mm.waitFor(1);
-			mm.move(Direction.UP);
-			
+			mm.move(Direction.UP);		
 		}
 
 		mm.log("Step 2:  Launch Settings Activity.  ");
@@ -102,5 +100,4 @@ public class Test_0003C1072305_ScreenSwitching extends InstrumentationTestCase{
 		mm.pressBack(3);
 		super.tearDown();
 	}
-
 }

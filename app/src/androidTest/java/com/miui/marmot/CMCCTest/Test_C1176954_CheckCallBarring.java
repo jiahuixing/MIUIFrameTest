@@ -26,23 +26,22 @@ public class Test_C1176954_CheckCallBarring extends InstrumentationTestCase{
     	mm.log("找到电话设置");
     	mm.waitFor(2);
     	UiScrollable list = new UiScrollable(new UiSelector().className("android.widget.ListView"));
-           UiObject mms;
-           mms  = list.getChildByText(new UiSelector().className("android.widget.TextView"), "电话", true);
-           mms.click();
+    	UiObject mms;
+    	mms  = list.getChildByText(new UiSelector().className("android.widget.TextView"), "电话", true);
+    	mms.click();
         mm.waitFor(2);
         mm.log("查找是否有呼叫限制选项");
         mm.waitFor(2);
     	UiScrollable list1 = new UiScrollable(new UiSelector().className("android.widget.ListView"));
-           UiObject callbarring;
-           callbarring  = list1.getChildByText(new UiSelector().className("android.widget.TextView"), "呼叫限制", true);
-          callbarring.click();
+    	UiObject callbarring;
+    	callbarring  = list1.getChildByText(new UiSelector().className("android.widget.TextView"), "呼叫限制", true);
+    	callbarring.click();
         mm.waitFor(1);
         mm.pressHome();
-    	    	    	    	  
-    }   
+    }
     
     protected void tearDown() throws Exception {
-        mm.pressBack(3);
+    	mm.pressBack(3);
         super.tearDown();
     }
 

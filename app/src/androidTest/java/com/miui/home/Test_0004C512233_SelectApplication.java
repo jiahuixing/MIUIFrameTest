@@ -22,7 +22,6 @@ public class Test_0004C512233_SelectApplication extends InstrumentationTestCase{
 		cc = new Checker(mm);
 	}
 	
-
 	public void test_00000001_SelectApplication() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
 		int y2 = (int)(mm.getDisplayHeight() / 2);
@@ -78,13 +77,11 @@ public class Test_0004C512233_SelectApplication extends InstrumentationTestCase{
 		mm.pressBack();
 		mm.pressBack();
 		mm.pressHome();
-
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
 		mm.pressBack(3);
 		super.tearDown();
-	}
-	
+	}	
 }

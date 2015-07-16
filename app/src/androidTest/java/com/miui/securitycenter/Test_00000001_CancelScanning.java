@@ -1,7 +1,7 @@
+
 package com.miui.securitycenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
 import android.test.InstrumentationTestCase;
@@ -11,23 +11,24 @@ import com.miui.marmot.lib.Marmot;
 
 import junit.framework.Assert;
 
+//C507225
 public class Test_00000001_CancelScanning extends InstrumentationTestCase {
-	
-	public Marmot mm;
-	public Checker cc;
-	private Context mContext;
+
+    public Marmot mm;
+    public Checker cc;
+    private Context mContext;
     private UiDevice mDevice;
 
     @Override
-    protected void setUp() throws Exception{
-    	super.setUp();
-    	mm = new Marmot(this);
-		cc = new Checker(mm);
-        try{
+    protected void setUp() throws Exception {
+        super.setUp();
+        mm = new Marmot(this);
+        cc = new Checker(mm);
+        try {
             super.setUp();
             mContext = this.getInstrumentation().getContext();
             mDevice = UiDevice.getInstance(getInstrumentation());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -35,11 +36,11 @@ public class Test_00000001_CancelScanning extends InstrumentationTestCase {
     public void test_0_ApplicationTest() {
         mm.log("Step 1 : Launch contacts Activity.");
         mDevice.pressHome();
-        mm.waitFor(1);
-        Intent intent = new Intent();
-        intent.setClassName("com.miui.securitycenter", "com.miui.securitycenter.MainActivity");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
+        mm.launchActivity("com.miui.securitycenter/com.miui.securitycenter.MainActivity");
+        mm.waitFor(2);
+        if (mm.exist(By.text("取消"))) {
+            mm.click(By.text("取消"));
+        }
         mm.waitFor(5);
         String currentPackageName = mDevice.getCurrentPackageName();
         Assert.assertEquals(currentPackageName, "com.miui.securitycenter");
@@ -56,7 +57,7 @@ public class Test_00000001_CancelScanning extends InstrumentationTestCase {
 
     @Override
     protected void tearDown() throws Exception {
-    	mm.pressBack(3);
+        mm.pressBack(3);
         super.tearDown();
     }
 }

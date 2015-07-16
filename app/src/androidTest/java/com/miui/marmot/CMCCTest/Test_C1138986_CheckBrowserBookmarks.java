@@ -21,7 +21,6 @@ public class Test_C1138986_CheckBrowserBookmarks extends InstrumentationTestCase
     	mm.log("打开浏览器");
     	mm.pressHome();
     	mm.launchActivity("com.android.browser/com.android.browser.BrowserActivity");
-    	
     	mm.log("检查是否预置移动书签");
     	mm.click(By.res("com.android.browser", "action_more"));
     	mm.click(By.text("书签/历史"));
@@ -50,15 +49,11 @@ public class Test_C1138986_CheckBrowserBookmarks extends InstrumentationTestCase
     	cc.assertTextExist("12580");
     	cc.assertTextExist("http://12580wap.10086.cn/?pid=PCM002942000");
 
-    	
-    
-    	   	    	  	
-    }    
-    
-    
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();
     }
-    
+
 }

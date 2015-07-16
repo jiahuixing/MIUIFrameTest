@@ -18,7 +18,7 @@ public class Test_C1189822_CheckAPPriorityManually extends InstrumentationTestCa
         mm = new Marmot(this);
         cc = new Checker(mm);
     }
-    
+
     public void test_C1189822_CheckAPPriorityManually() throws Exception {
     	mm.log("打开设置");
     	mm.pressHome();
@@ -40,9 +40,9 @@ public class Test_C1189822_CheckAPPriorityManually extends InstrumentationTestCa
         mm.waitFor(1);
         cc.assertTextExist("已保存的接入点列表");
         mm.pressBack(2);
-                    	    	  	
-    }    
-    
+
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

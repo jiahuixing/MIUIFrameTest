@@ -28,15 +28,11 @@ public class Test_C1138983_CheckPreferredNetworkType extends InstrumentationTest
     	cc.assertTextExist("4G/3G/2G");
     	cc.assertTextExist("3G/2G");
     	mm.pressBack(3);
-    	
-    	    	
-    	    	  	
-    }   
-    
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();
     }
-	
-	
+
 }

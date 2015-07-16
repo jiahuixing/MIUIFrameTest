@@ -2,6 +2,7 @@ package com.miui.home;
 
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.Direction;
+import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiScrollable;
 import android.support.test.uiautomator.UiSelector;
 import android.test.InstrumentationTestCase;
@@ -21,7 +22,6 @@ public class Test_0000C512381_ModifyWallpaper extends InstrumentationTestCase{
 		mm = new Marmot(this);
 		cc = new Checker(mm);
 	}
-
 
 	public void test_00000001_ModifyWallpaper() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
@@ -57,6 +57,13 @@ public class Test_0000C512381_ModifyWallpaper extends InstrumentationTestCase{
 		mm.pressMenu();
 		mm.click(By.text("修改壁纸"));
 		mm.waitFor(1);
+		UiObject view = this.mm.getUiDevice().findObject(new UiSelector().className("android.view.View")
+		.resourceId("com.miui.home:id/wallpaper_thumbnail_view"));
+		for(int i=0;i<4;i++){
+			view.swipeLeft(4);
+			mm.waitFor(2);
+		}
+		/*
 		if(DisplayWidth == 1440){
 			for(int i=0;i<4;i++){
 				mm.move(1000, 2300, 500, 2300);
@@ -69,7 +76,7 @@ public class Test_0000C512381_ModifyWallpaper extends InstrumentationTestCase{
 				mm.move(900, 1700, 200, 1700);
 				mm.waitFor(2);
 			}	
-		}
+		}*/
 		mm.click(By.text("其他"));
 		mm.waitFor(1);
 
@@ -95,7 +102,6 @@ public class Test_0000C512381_ModifyWallpaper extends InstrumentationTestCase{
 		mm.pressBack();
 		mm.pressBack();
 		mm.pressHome();
-
 	}
 
 	@Override
@@ -103,5 +109,4 @@ public class Test_0000C512381_ModifyWallpaper extends InstrumentationTestCase{
 		mm.pressBack(3);
 		super.tearDown();
 	}
-
 }

@@ -22,7 +22,6 @@ public class Test_0005C512227_UiInterfaceDisplay extends InstrumentationTestCase
 		cc = new Checker(mm);
 	}
 	
-
 	public void test_00000000_UiInterfaceDisplay() throws Exception {
 		int x2 = mm.getDisplayWidth() - 500;
 		int y2 = (int)(mm.getDisplayHeight() / 2);

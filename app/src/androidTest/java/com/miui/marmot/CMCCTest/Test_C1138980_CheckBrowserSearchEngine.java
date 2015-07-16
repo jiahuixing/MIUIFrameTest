@@ -20,19 +20,16 @@ public class Test_C1138980_CheckBrowserSearchEngine extends InstrumentationTestC
     	mm.log("打开浏览器");
     	mm.pressHome();
     	mm.launchActivity("com.android.browser/com.android.browser.BrowserActivity");
-    	
     	mm.log("选择设置地址栏搜索引擎");
     	mm.click(By.res("com.android.browser", "action_more"));
     	mm.click(By.text("设置"));
     	mm.click(By.text("设置地址栏搜索引擎"));
-     	
     	mm.log("检查是否变更搜索引擎为移动要求");
     	cc.assertTextNotExist("谷歌");
     	cc.assertTextExist("139");
-    	    	  	
-    }    
-    
-    
+
+    }
+
     protected void tearDown() throws Exception {
         mm.pressBack(3);
         super.tearDown();

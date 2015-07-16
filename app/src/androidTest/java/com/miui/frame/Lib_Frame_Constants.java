@@ -8,6 +8,7 @@ package com.miui.frame;
  * Created at 10:44
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,6 +103,18 @@ public class Lib_Frame_Constants {
 				"com.android.calculator2:id/div");
 		CALCULATOR_OPERATION_RES.put(OPERATION_EQUAL,
 				"com.android.calculator2:id/equal");
+	}
+
+	public static final int TEST_LOOPS = 12;
+
+	// no fm
+	public static final ArrayList<String> PRODUCT_NAME_NO_FM = new ArrayList<>();
+	public static final String PRODUCT_NAME_VIRGO = "virgo";
+	public static final String PRODUCT_NAME_LEO = "leo";
+
+	static {
+		PRODUCT_NAME_NO_FM.add(PRODUCT_NAME_VIRGO);
+		PRODUCT_NAME_NO_FM.add(PRODUCT_NAME_LEO);
 	}
 
 }
