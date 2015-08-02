@@ -11,10 +11,6 @@ public class Test_00000000_PlayRankvideo extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -31,7 +27,7 @@ public class Test_00000000_PlayRankvideo extends InstrumentationTestCase {
     }
 
     public void testPlayRankvideo() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
 
         mm.waitFor(1);
@@ -41,7 +37,7 @@ public class Test_00000000_PlayRankvideo extends InstrumentationTestCase {
 
         mm.log("Step 3 : Play first video.");
         mm.click(By.clazz(android.widget.ImageView.class).res(
-                PACKAGE_NAME + ":id/poster"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/poster"));
         cc.setTestrailResult("c1560921", true);
         mm.waitFor(2);
         mm.click(By.clazz(android.widget.TextView.class).text("播放"));
@@ -59,7 +55,7 @@ public class Test_00000000_PlayRankvideo extends InstrumentationTestCase {
 
         mm.log("Step 4 : Play other video.");
         mm.click(By.clazz(android.widget.TextView.class).res(
-                PACKAGE_NAME + ":id/quick_entry_user"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/quick_entry_user"));
         mm.waitFor(2);
         mm.click(By.clazz(android.widget.TextView.class).text("播放"));
         mm.waitFor(80);

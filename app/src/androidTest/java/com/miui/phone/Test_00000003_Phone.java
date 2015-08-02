@@ -57,6 +57,7 @@ public class Test_00000003_Phone extends InstrumentationTestCase {
 		marmot = new Marmot(this);
 		checker = new Checker(marmot);
 		uiDevice = marmot.getUiDevice();
+		marmot.log("Step 1 : Screen unlock.");
 		if (!marmot.isScreenOn()) {
 			marmot.wakeUp();
 			marmot.waitFor(1);
@@ -64,45 +65,54 @@ public class Test_00000003_Phone extends InstrumentationTestCase {
 		if (marmot.getCurrentPackageName().equals(PACKAGE_NAME_KEY_GUARD)) {
 			marmot.move(Direction.UP);
 			marmot.waitFor(1);
-	    }
+		}
 	}
-		
 
 	public void test_00000003_Phone() throws Exception {
-		for(int i =0;i<20;i++){
-		marmot.log("launch contacts.");
-		marmot.launchActivity(ACTIVITY_NAME_CONTACTS);
-		marmot.waitFor(2);
-		checker.assertTrue("contacts",
-				marmot.getCurrentPackageName().equals(PACKAGE_NAME_CONTACTS));
-		UiObject2 showDialPad, dialPad;
-		dialPad = marmot.getUiObject(By.clazz("android.widget.LinearLayout")
-				.res("com.android.contacts:id/dialpad"));
-		if (dialPad == null) {
-			showDialPad = marmot.getUiObject(By.clazz("android.widget.Button")
-					.text("拨号"));
-			showDialPad.click();
+		for (int i = 0; i < 20; i++) {
+			marmot.log("Step 2 : launch contacts Activity.");
+			marmot.launchActivity(ACTIVITY_NAME_CONTACTS);
 			marmot.waitFor(2);
-		}
-		checker.assertTrue("dialNumber", dialNumber("112"));
-		marmot.saveScreenshot("dialNumber" + IMAGE_EXTENSION);
-		UiObject2 callSim1;
-		callSim1 = marmot.getUiObject(By.clazz("android.widget.Button").res(
-				"com.android.contacts:id/call_sim1"));
-		// UiObject2 callSim2;
-		// callSim2 =
-		// marmot.getUiObject(By.clazz("android.widget.Button").res("com.android.contacts:id/call_sim2"));
-		callSim1.click();
-		marmot.waitFor(2);
-		checker.assertTrue("incallui",
-				marmot.getCurrentPackageName().equals(PACKAGE_NAME_IN_CALL_UI));
-		marmot.waitFor(5);
-		marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
-		UiObject2 hangOff;
-		hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
-				"com.android.incallui:id/endButton"));
-		hangOff.click();
-		marmot.waitFor(2);
+
+			marmot.log("Step 3 : dialNumber112.");
+			checker.assertTrue("contacts", marmot.getCurrentPackageName()
+					.equals(PACKAGE_NAME_CONTACTS));
+			UiObject2 showDialPad, dialPad;
+			dialPad = marmot.getUiObject(By
+					.clazz("android.widget.LinearLayout").res(
+							"com.android.contacts:id/dialpad"));
+			if (dialPad == null) {
+				showDialPad = marmot.getUiObject(By.clazz(
+						"android.widget.Button").text("拨号"));
+				showDialPad.click();
+				marmot.waitFor(2);
+			}
+			checker.assertTrue("dialNumber", dialNumber("112"));
+			marmot.saveScreenshot("dialNumber" + IMAGE_EXTENSION);
+
+			marmot.log("Step 4 : single SIM card call.");
+			UiObject2 callSim1;
+			callSim1 = marmot.getUiObject(By.clazz("android.widget.Button")
+					.res("com.android.contacts:id/call_sim1"));
+			// UiObject2 callSim2;
+			// callSim2 =
+			// marmot.getUiObject(By.clazz("android.widget.Button").res("com.android.contacts:id/call_sim2"));
+			callSim1.click();
+			marmot.waitFor(2);
+
+			marmot.log("Step 5 : IncallUI.");
+			checker.assertTrue("incallui", marmot.getCurrentPackageName()
+					.equals(PACKAGE_NAME_IN_CALL_UI));
+			marmot.waitFor(5);
+			marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
+
+			marmot.log("Step 6 : HangOff Call.");
+			UiObject2 hangOff;
+			hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
+					"com.android.incallui:id/endButton"));
+			hangOff.click();
+			marmot.waitFor(2);
+			checker.setTestrailResult("C513238", true);
 		}
 	}
 
@@ -126,11 +136,10 @@ public class Test_00000003_Phone extends InstrumentationTestCase {
 		}
 		return true;
 	}
-	
 
 	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();
 	}
 }
-//C513238 连续呼叫
+// C513238 连续呼叫

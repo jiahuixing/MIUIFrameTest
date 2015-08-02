@@ -11,10 +11,6 @@ public class Test_00000000_EditPlayHistory extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -33,7 +29,7 @@ public class Test_00000000_EditPlayHistory extends InstrumentationTestCase {
     }
 
     public void testEditPlayHistory() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
 
         mm.waitFor(1);
@@ -45,36 +41,36 @@ public class Test_00000000_EditPlayHistory extends InstrumentationTestCase {
 
         mm.log("Step 3: Delete one history video.");
         mm.click(By.clazz(android.widget.Button.class).res(
-                PACKAGE_NAME + ":id/channel_edit_btn"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/channel_edit_btn"));
         mm.waitFor(1);
         mm.click(By.clazz(android.widget.ImageView.class).res(
-                PACKAGE_NAME + ":id/poster"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/poster"));
         mm.waitFor(5);
 
         UiObject2 titleBar = mm.getUiObject(By.clazz(
                 android.widget.TextView.class).res(
-                PACKAGE_NAME + ":id/media_title"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/media_title"));
         deleteTitle = titleBar.getText();
 
         mm.click(By.clazz(android.widget.Button.class).res(
-                PACKAGE_NAME + ":id/delete"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/delete"));
         mm.waitFor(2);
         cc.assertTextNotExist(deleteTitle);
         cc.setTestrailResult("c1122589", true);
 
         mm.log("Step 4 : Delete all history video.");
         mm.click(By.clazz(android.widget.Button.class).res(
-                PACKAGE_NAME + ":id/channel_edit_btn"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/channel_edit_btn"));
         mm.waitFor(1);
         mm.click(By.clazz(android.widget.Button.class).res(
-                PACKAGE_NAME + ":id/select_all"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/select_all"));
         mm.waitFor(1);
         mm.click(By.clazz(android.widget.Button.class).res(
-                PACKAGE_NAME + ":id/delete"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/delete"));
         mm.waitFor(2);
 
         cc.assertUiObejctExist(By.clazz(android.widget.TextView.class).res(
-                PACKAGE_NAME + ":id/empty_title"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/empty_title"));
         cc.setTestrailResult("c1122596", true);
     }
 

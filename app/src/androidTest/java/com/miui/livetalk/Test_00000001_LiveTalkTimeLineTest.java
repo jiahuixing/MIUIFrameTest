@@ -23,78 +23,81 @@ import java.util.Random;
 
 public class Test_00000001_LiveTalkTimeLineTest extends InstrumentationTestCase {
 
-	public Marmot marmot;
-	public Checker checker;
-	public UiDevice uiDevice;
-	public Context context;
-	public static int testStep = 0;
+    public Marmot marmot;
+    public Checker checker;
+    public UiDevice uiDevice;
+    public Context context;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		marmot = new Marmot(this);
-		checker = new Checker(marmot);
-		context = marmot.getContext();
-		Lib_Frame_Utils.unLock(marmot);
-	}
+    public static int testStep = 0;
 
-	public void test_LiveTalkTimeLineTest() throws Exception {
-		for (int i = 0; i < Lib_Frame_Constants.TEST_LOOPS; i++) {
-			testStep += 1;
-			marmot.log(String.format("%s. launch contacts.", testStep));
-			marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CONTACTS_DIALER);
-			checker.assertTrue(
-					"launch",
-					marmot.getCurrentPackageName().equals(
-							Lib_Frame_Constants.PACKAGE_NAME_CONTACTS));
-			UiObject2 more;
-			more = marmot.getUiObject(By.clazz("").res(""));
-			if (more != null) {
-				testStep += 1;
-				marmot.log(String.format("%s. more.", testStep));
-				more.click();
-				marmot.waitFor(2);
-				UiObject2 immersionList, enableLiveTalk, defaultPhone, defaultLiveTalk, liveTalkRecharge;
-				immersionList = marmot.getUiObject(By.clazz(""));
-				checker.assertTrue("list", immersionList != null);
-				enableLiveTalk = marmot.getUiObject(By.clazz("").text(""));
-				if (enableLiveTalk != null) {
-					testStep += 1;
-					marmot.log(String.format("%s. enable LiveTalk.", testStep));
-					enableLiveTalk.click();
-					marmot.waitFor(2);
-				} else {
-					defaultPhone = marmot.getUiObject(By.clazz("").text(""));
-					defaultLiveTalk = marmot.getUiObject(By.clazz("").text(""));
-					defaultPhone.click();
-					marmot.waitFor(2);
-					defaultLiveTalk.click();
-					marmot.waitFor(2);
-					liveTalkRecharge = marmot
-							.getUiObject(By.clazz("").text(""));
-					liveTalkRecharge.click();
-					marmot.waitFor(2);
-					UiObject2 productList, selectedProduct;
-					productList = marmot.getUiObject(By.clazz("").res(""));
-					Random random = new Random();
-					int productCount, randomInt;
-					productCount = productList.getChildCount();
-					randomInt = random.nextInt(productCount);
-					selectedProduct = productList.getChildren().get(randomInt);
-					selectedProduct.click();
-					marmot.waitFor(2);
-				}
-			}
-			Lib_Frame_Utils.backToPackage(marmot,
-					Lib_Frame_Constants.PACKAGE_NAME_HOME);
-		}
-	}
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        marmot = new Marmot(this);
+        checker = new Checker(marmot);
+        context = marmot.getContext();
+        Lib_Frame_Utils.unLock(marmot);
+    }
 
-	@Override
-	public void tearDown() throws Exception {
-		Lib_Frame_Utils.backToPackage(marmot,
-				Lib_Frame_Constants.PACKAGE_NAME_HOME);
-		super.tearDown();
-	}
+    public void test_LiveTalkTimeLineTest() throws Exception {
+        for (int i = 0; i < Lib_Frame_Constants.TEST_LOOPS; i++) {
+            testStep += 1;
+            marmot.log(String.format("%s. launch contacts.", testStep));
+            marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CONTACTS_DIALER);
+            checker.assertTrue(
+                    "launch",
+                    marmot.getCurrentPackageName().equals(
+                            Lib_Frame_Constants.PACKAGE_NAME_CONTACTS));
+            UiObject2 more;
+            more = marmot.getUiObject(By.clazz("").res(""));
+            if (more != null) {
+                testStep += 1;
+                marmot.log(String.format("%s. more.", testStep));
+                more.click();
+                marmot.waitFor(2);
+                UiObject2 immersionList, enableLiveTalk, defaultPhone, defaultLiveTalk, liveTalkRecharge;
+                immersionList = marmot.getUiObject(By.clazz(""));
+                checker.assertTrue("list", immersionList != null);
+                enableLiveTalk = marmot.getUiObject(By.clazz("").text(""));
+                if (enableLiveTalk != null) {
+                    testStep += 1;
+                    marmot.log(String.format("%s. enable LiveTalk.", testStep));
+                    enableLiveTalk.click();
+                    marmot.waitFor(2);
+                } else {
+                    defaultPhone = marmot.getUiObject(By.clazz("").text(""));
+                    defaultLiveTalk = marmot.getUiObject(By.clazz("").text(""));
+                    defaultPhone.click();
+                    marmot.waitFor(2);
+                    defaultLiveTalk.click();
+                    marmot.waitFor(2);
+                    liveTalkRecharge = marmot
+                            .getUiObject(By.clazz("").text(""));
+                    liveTalkRecharge.click();
+                    marmot.waitFor(2);
+                    UiObject2 productList, selectedProduct;
+                    productList = marmot.getUiObject(By.clazz("").res(""));
+                    Random random = new Random();
+                    int productCount, randomInt;
+                    productCount = productList.getChildCount();
+                    randomInt = random.nextInt(productCount);
+                    selectedProduct = productList.getChildren().get(randomInt);
+                    selectedProduct.click();
+                    marmot.waitFor(2);
+                }
+            }
+            testStep += 1;
+            marmot.log(String.format("%s. quit livetalk.", testStep));
+            Lib_Frame_Utils.backToPackage(marmot,
+                    Lib_Frame_Constants.PACKAGE_NAME_HOME);
+        }
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        Lib_Frame_Utils.backToPackage(marmot,
+                Lib_Frame_Constants.PACKAGE_NAME_HOME);
+        super.tearDown();
+    }
 
 }

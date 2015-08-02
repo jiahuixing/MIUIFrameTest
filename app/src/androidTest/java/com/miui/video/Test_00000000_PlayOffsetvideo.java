@@ -11,10 +11,6 @@ public class Test_00000000_PlayOffsetvideo extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -31,7 +27,7 @@ public class Test_00000000_PlayOffsetvideo extends InstrumentationTestCase {
     }
 
     public void testPlayOffsetvideo() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
 
         mm.waitFor(1);
@@ -41,7 +37,7 @@ public class Test_00000000_PlayOffsetvideo extends InstrumentationTestCase {
 
         mm.log("Step 3 : Play first offset video.");
         mm.click(By.clazz(android.widget.ImageView.class).res(
-                PACKAGE_NAME + ":id/image_ads"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/image_ads"));
         mm.waitFor(5);
 
         mm.click(mm.getDisplayWidth() / 2, mm.getDisplayHeight() / 2);
@@ -55,7 +51,7 @@ public class Test_00000000_PlayOffsetvideo extends InstrumentationTestCase {
 
         mm.log("Step 4 : Play second offset video.");
         mm.click(By.clazz(android.widget.ImageView.class).res(
-                PACKAGE_NAME + ":id/poster"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/poster"));
         mm.waitFor(5);
         mm.click(mm.getDisplayWidth() / 2, mm.getDisplayHeight() / 2);
         mm.saveScreenshot("ScreenShot_offset2.png");

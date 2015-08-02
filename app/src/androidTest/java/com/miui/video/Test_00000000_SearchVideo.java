@@ -10,10 +10,6 @@ public class Test_00000000_SearchVideo extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -32,30 +28,31 @@ public class Test_00000000_SearchVideo extends InstrumentationTestCase {
     }
 
     public void testSearchVideo() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
 
-        mm.click((By.clazz(android.widget.ImageView.class).res(PACKAGE_NAME
-                + ":id/search_button")));
+        mm.click((By.clazz(android.widget.ImageView.class)
+                .res(Lib_VideoConst.PACKAGE_NAME + ":id/search_button")));
         mm.log("Step 2 : Open search view.");
         cc.assertUiObejctExist(By.clazz(android.widget.EditText.class).res(
-                PACKAGE_NAME + ":id/search_name"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/search_name"));
 
         mm.log("Step 3 : Input text.");
         String searchText = "快乐大本营";
 
         mm.setText(
                 By.clazz(android.widget.EditText.class).res(
-                        PACKAGE_NAME + ":id/search_name"), searchText);
+                        Lib_VideoConst.PACKAGE_NAME + ":id/search_name"),
+                searchText);
 
         mm.click(By.clazz(android.widget.TextView.class).res(
-                PACKAGE_NAME + ":id/search_btn"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/search_btn"));
 
         mm.waitFor(5);
 
         mm.log("Step 4 : Check search result.");
         cc.assertUiObejctExist(By.clazz(android.widget.ListView.class).res(
-                PACKAGE_NAME + ":id/list_content"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/list_content"));
         cc.assertUiObejctExist(By.text(searchText));
         mm.saveScreenshot("ScreenShot_search.png");
         cc.setTestrailResult("c1122607", true);

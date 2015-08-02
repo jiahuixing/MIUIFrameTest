@@ -13,10 +13,6 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -35,14 +31,15 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
     }
 
     public void testAddOfflineVideo() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
 
         mm.click(By.clazz(android.widget.TextView.class).text("电影"));
         mm.log("Step 2 : Enter movie channel.");
         mm.waitFor(3);
 
-        mm.click(By.res(PACKAGE_NAME + ":id/tv_tab_indicator").text("新剧"));
+        mm.click(By.res(Lib_VideoConst.PACKAGE_NAME + ":id/tv_tab_indicator")
+                .text("新剧"));
         mm.log("Step 3 : Enter New tab.");
         mm.waitFor(3);
 
@@ -50,7 +47,8 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
 
         List<UiObject2> objestList = mm.getUiDevice().findObjects(
                 By.clazz(android.widget.RelativeLayout.class).res(
-                        PACKAGE_NAME + ":id/channel_rank_item_layout"));
+                        Lib_VideoConst.PACKAGE_NAME
+                                + ":id/channel_rank_item_layout"));
         for (UiObject2 videoImage : objestList) {
             videoImage.click();
             mm.waitFor(2);
@@ -60,7 +58,7 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
             if (offlineButton != null && offlineButton.isEnabled()) {
                 UiObject2 titleBar = mm.getUiObject(By.clazz(
                         android.widget.LinearLayout.class).res(
-                        PACKAGE_NAME + ":id/title_top"));
+                        Lib_VideoConst.PACKAGE_NAME + ":id/title_top"));
                 newOfflineTitle = titleBar.findObject(
                         By.clazz(android.widget.TextView.class)).getText();
                 mm.log("Step 3: Add offline video.");
@@ -81,7 +79,7 @@ public class Test_00000000_AddOfflineVideo extends InstrumentationTestCase {
         mm.waitFor(2);
 
         mm.click(By.clazz(android.widget.RelativeLayout.class).res(
-                PACKAGE_NAME + ":id/offline_media_bar"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/offline_media_bar"));
 
         cc.assertTextExist(newOfflineTitle);
         cc.setTestrailResult("c1122592", true);

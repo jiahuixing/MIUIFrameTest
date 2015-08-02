@@ -50,8 +50,7 @@ public class Test_00050001_BrowserHistory extends InstrumentationTestCase {
 				"com.android.browser:id/action_more"));
 		BrowserOpions.click();
 		mm.waitFor(5);
-		
-		
+
 		mm.log("Step 2 : Clear History.");
 		// 点击浏览器书签历史
 		mDevice.findObject(

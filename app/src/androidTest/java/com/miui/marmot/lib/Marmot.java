@@ -18,6 +18,7 @@ import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiScrollable;
 import android.support.test.uiautomator.UiSelector;
+import android.support.test.uiautomator.Until;
 import android.test.InstrumentationTestCase;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -37,6 +38,7 @@ public class Marmot {
     protected String mFailedImgName = null;
     protected String mStandardImgName = null;
     private final int MOVE_STEPS = 6;
+    private final int APP_LAUNCH_TIMEOUT = 5000;
     private final String rootPath = "/sdcard/MIUI/autotest/";
     protected static final String LOG_TAG = "MIUIAUTOTEST";
 
@@ -285,9 +287,6 @@ public class Marmot {
      */
     public boolean setText(BySelector bySelector, String text) {
         UiObject2 editText = mDevice.findObject(bySelector);
-        if(editText == null) {
-        	throw new NullPointerException();
-        }
         //check object class
         if(editText.getClassName().contains("EditText")) {
             //clear
@@ -305,6 +304,22 @@ public class Marmot {
         }
 
         return false;
+    }
+
+    /**
+     * 设置可编辑对象的文本内容设置为text
+     * @param uiSelector 选择器
+     * @param text 文本内容
+     * @return 是否成功
+     * @throws UiObjectNotFoundException
+     */
+    public boolean setText(UiSelector uiSelector, String text) throws UiObjectNotFoundException {
+        UiObject editText = mDevice.findObject(uiSelector);
+        editText.clearTextField();
+        mDevice.pressDelete();
+        editText.setText(text);
+        waitFor(2);
+        return editText.getText().equals(text) ? true : false;
     }
 
     /**
@@ -463,9 +478,19 @@ public class Marmot {
         String atyName = activityName.split("/")[1];
 
         intent.setClassName(pkgName, atyName.startsWith(".") ? (pkgName + atyName) : atyName);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
-        waitFor(5);
+        mDevice.wait(Until.hasObject(By.pkg(pkgName).depth(0)), APP_LAUNCH_TIMEOUT);
+    }
+
+    /**启动包名为pkg的app
+     * @param pkg
+     */
+    public void launchApp(String pkg) {
+        Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(pkg);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        mContext.startActivity(intent);
+        mDevice.wait(Until.hasObject(By.pkg(pkg).depth(0)), APP_LAUNCH_TIMEOUT);
     }
 
     /**
@@ -497,6 +522,10 @@ public class Marmot {
      * @param imgName 图片名字
      */
     public void saveScreenshot(String imgName){
+        String suffix = ".png";
+        if(!imgName.endsWith(suffix)) {
+            imgName += suffix;
+        }
         mDevice.takeScreenshot(new File(mCasePath + "//" + imgName));
         waitFor(3);
     }

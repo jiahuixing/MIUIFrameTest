@@ -18,44 +18,47 @@ import com.miui.marmot.lib.Checker;
 import com.miui.marmot.lib.Marmot;
 
 public class Test_00000001_CalculatorTimeLineTest extends
-		InstrumentationTestCase {
+        InstrumentationTestCase {
 
-	public Marmot marmot;
-	public Checker checker;
-	public UiDevice uiDevice;
-	public Context context;
-	public static int testStep = 0;
+    public Marmot marmot;
+    public Checker checker;
+    public UiDevice uiDevice;
+    public Context context;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		marmot = new Marmot(this);
-		checker = new Checker(marmot);
-		context = marmot.getContext();
-		Lib_Frame_Utils.unLock(marmot);
-	}
+    public static int testStep = 0;
 
-	public void test_CalculatorTimeLineTest() throws Exception {
-		for (int i = 0; i < Lib_Frame_Constants.TEST_LOOPS; i++) {
-			testStep += 1;
-			marmot.log(String.format("%s. launch calculator.", testStep));
-			marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
-			// Lib_Frame_Utils.launchActivityNoHistory(context,
-			// Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
-			// marmot.waitFor(2);
-			checker.assertTrue(
-					"launch",
-					marmot.getCurrentPackageName().equals(
-							Lib_Frame_Constants.PACKAGE_NAME_CALCULATOR));
-			Lib_Frame_Utils.backToPackage(marmot,
-					Lib_Frame_Constants.PACKAGE_NAME_HOME);
-		}
-	}
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        marmot = new Marmot(this);
+        checker = new Checker(marmot);
+        context = marmot.getContext();
+        Lib_Frame_Utils.unLock(marmot);
+    }
 
-	@Override
-	public void tearDown() throws Exception {
-		Lib_Frame_Utils.backToPackage(marmot,
-				Lib_Frame_Constants.PACKAGE_NAME_HOME);
-		super.tearDown();
-	}
+    public void test_CalculatorTimeLineTest() throws Exception {
+        for (int i = 0; i < Lib_Frame_Constants.TEST_LOOPS; i++) {
+            testStep += 1;
+            marmot.log(String.format("%s. launch calculator.", testStep));
+            marmot.launchActivity(Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
+            // Lib_Frame_Utils.launchActivityNoHistory(context,
+            // Lib_Frame_Constants.ACTIVITY_NAME_CALCULATOR);
+            // marmot.waitFor(2);
+            checker.assertTrue(
+                    "launch calculator",
+                    marmot.getCurrentPackageName().equals(
+                            Lib_Frame_Constants.PACKAGE_NAME_CALCULATOR));
+            testStep += 1;
+            marmot.log(String.format("%s. quit calculator.", testStep));
+            Lib_Frame_Utils.backToPackage(marmot,
+                    Lib_Frame_Constants.PACKAGE_NAME_HOME);
+        }
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        Lib_Frame_Utils.backToPackage(marmot,
+                Lib_Frame_Constants.PACKAGE_NAME_HOME);
+        super.tearDown();
+    }
 }

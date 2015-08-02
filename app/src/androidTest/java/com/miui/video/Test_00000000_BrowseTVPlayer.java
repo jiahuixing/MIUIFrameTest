@@ -15,10 +15,6 @@ public class Test_00000000_BrowseTVPlayer extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -37,16 +33,17 @@ public class Test_00000000_BrowseTVPlayer extends InstrumentationTestCase {
     }
 
     public void testBrowseTVPlayer() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
         mm.waitFor(3);
         mm.click(By.clazz(android.widget.TextView.class).text("电视直播"));
         mm.log("Step 2 : Enter TVPlay.");
         cc.setTestrailResult("c1122618", true);
         mm.waitFor(5);
-        cc.assertUiObejctExist(By.res(PACKAGE_NAME + ":id/title_top_name"));
+        cc.assertUiObejctExist(By.res(Lib_VideoConst.PACKAGE_NAME
+                + ":id/title_top_name"));
 
-        UiObject2 listView = mm.getUiObject(By.res(PACKAGE_NAME
+        UiObject2 listView = mm.getUiObject(By.res(Lib_VideoConst.PACKAGE_NAME
                 + ":id/recycler_layout"));
 
         String lastTitle = null;
@@ -54,7 +51,7 @@ public class Test_00000000_BrowseTVPlayer extends InstrumentationTestCase {
         while (true) {
             UiObject2 firstItemTextView = mm.getUiObject(By.clazz(
                     android.widget.TextView.class).res(
-                    PACKAGE_NAME + ":id/table_item_text"));
+                    Lib_VideoConst.PACKAGE_NAME + ":id/table_item_text"));
 
             if (lastTitle != null
                     && lastTitle.equals(firstItemTextView.getText())) {
@@ -65,13 +62,14 @@ public class Test_00000000_BrowseTVPlayer extends InstrumentationTestCase {
 
             List<UiObject2> imageList = mm.getUiDevice().findObjects(
                     By.clazz(android.widget.ImageView.class).res(
-                            PACKAGE_NAME + ":id/media_view_image_poster"));
+                            Lib_VideoConst.PACKAGE_NAME
+                                    + ":id/media_view_image_poster"));
 
             int index = 1;
             for (UiObject2 object : imageList) {
                 object.click();
 
-                //mm.waitFor(2);
+                // mm.waitFor(2);
 
                 // UiObject2 titleView = mm.getUiObject(By.res(PACKAGE_NAME +
                 // ":id/vp_top_title"));

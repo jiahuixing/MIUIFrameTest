@@ -11,10 +11,6 @@ public class Test_00000000_AddPlayHistory extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -33,7 +29,7 @@ public class Test_00000000_AddPlayHistory extends InstrumentationTestCase {
     }
 
     public void testAddPlayHistory() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
         mm.click(By.clazz(android.widget.TextView.class).text("综艺"));
         mm.log("Step 2 : Enter ZongYi channel.");
@@ -42,11 +38,11 @@ public class Test_00000000_AddPlayHistory extends InstrumentationTestCase {
         String newPlayTitle = null;
         mm.log("Step 3 : Play one video.");
         mm.click(By.clazz(android.widget.ImageView.class).res(
-                PACKAGE_NAME + ":id/poster"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/poster"));
 
         UiObject2 titleBar = mm.getUiObject(By.clazz(
                 android.widget.LinearLayout.class).res(
-                PACKAGE_NAME + ":id/title_top"));
+                Lib_VideoConst.PACKAGE_NAME + ":id/title_top"));
         newPlayTitle = titleBar.findObject(
                 By.clazz(android.widget.TextView.class)).getText();
 

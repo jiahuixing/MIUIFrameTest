@@ -57,6 +57,7 @@ public class Test_00000001_Phone extends InstrumentationTestCase {
 		marmot = new Marmot(this);
 		checker = new Checker(marmot);
 		uiDevice = marmot.getUiDevice();
+		marmot.log("Step 1 : Screen unlock.");
 		if (!marmot.isScreenOn()) {
 			marmot.wakeUp();
 			marmot.waitFor(1);
@@ -68,9 +69,12 @@ public class Test_00000001_Phone extends InstrumentationTestCase {
 	}
 
 	public void test_00000001_Phone() throws Exception {
-		marmot.log("launch contacts.");
+		marmot.log("Step 2 : launch contacts Activity.");
+		marmot.pressHome();
 		marmot.launchActivity(ACTIVITY_NAME_CONTACTS);
 		marmot.waitFor(2);
+
+		marmot.log("Step 3 : dialNumber13581659857.");
 		checker.assertTrue("contacts",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_CONTACTS));
 		UiObject2 showDialPad, dialPad;
@@ -94,9 +98,12 @@ public class Test_00000001_Phone extends InstrumentationTestCase {
 		marmot.waitFor(5);
 		marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
 
+		marmot.log("Step 4 : click contacts.");
 		UiObject2 contacts;
 		contacts = marmot.getUiObject(By.clazz("android.widget.Button").text(
 				"通讯录"));
+
+		marmot.log("Step 5 : jump contacts list.");
 		if (contacts != null) {
 			contacts.click();
 		} else {
@@ -111,6 +118,8 @@ public class Test_00000001_Phone extends InstrumentationTestCase {
 		}
 		marmot.waitFor(2);
 		marmot.saveScreenshot("contacts" + IMAGE_EXTENSION);
+
+		marmot.log("Step 6 : back talk page.");
 		checker.assertTrue("contacts",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_CONTACTS));
 		marmot.waitFor(3);
@@ -118,11 +127,14 @@ public class Test_00000001_Phone extends InstrumentationTestCase {
 		marmot.waitFor(2);
 		checker.assertTrue("incallui",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_IN_CALL_UI));
+
+		marmot.log("Step 7 : hangoff.");
 		UiObject2 hangOff;
 		hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.incallui:id/endButton"));
 		hangOff.click();
 		marmot.waitFor(2);
+		checker.setTestrailResult("C513250", true);
 	}
 
 	private boolean dialNumber(String phoneNumber) {

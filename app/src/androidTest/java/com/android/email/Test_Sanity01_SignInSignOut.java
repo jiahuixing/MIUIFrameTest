@@ -47,7 +47,8 @@ public class Test_Sanity01_SignInSignOut extends InstrumentationTestCase {
 		mm.log("Step 3 : Delete account");
 		mm.pressBack(2);
 		for (int i = 0; i < Lib_Email.infos.length; i++) {
-			mm.clickOnTextInList(Lib_Email.infos[i][0]);
+			new UiScrollable(new UiSelector().className("android.widget.ListView")).scrollTextIntoView(Lib_Email.infos[i][0]);
+			mm.click(By.text(Lib_Email.infos[i][0]));
 			mm.waitFor(2);
 			new UiScrollable(
 					new UiSelector().className("android.widget.ListView"))

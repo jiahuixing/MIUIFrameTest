@@ -57,6 +57,8 @@ public class Test_00000002_Phone extends InstrumentationTestCase {
 		marmot = new Marmot(this);
 		checker = new Checker(marmot);
 		uiDevice = marmot.getUiDevice();
+
+		marmot.log("Step 1 : Screen unlock.");
 		if (!marmot.isScreenOn()) {
 			marmot.wakeUp();
 			marmot.waitFor(1);
@@ -68,9 +70,12 @@ public class Test_00000002_Phone extends InstrumentationTestCase {
 	}
 
 	public void test_00000002_Phone() throws Exception {
-		marmot.log("launch contacts.");
+
+		marmot.log("Step 2 : launch contacts Activity.");
 		marmot.launchActivity(ACTIVITY_NAME_CONTACTS);
 		marmot.waitFor(2);
+
+		marmot.log("Step 3 : dialNumber112.");
 		checker.assertTrue("contacts",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_CONTACTS));
 		UiObject2 showDialPad, dialPad;
@@ -84,40 +89,44 @@ public class Test_00000002_Phone extends InstrumentationTestCase {
 		}
 		checker.assertTrue("dialNumber", dialNumber("112"));
 		marmot.saveScreenshot("dialNumber" + IMAGE_EXTENSION);
+
+		marmot.log("Step 4 : single SIM card call.");
 		UiObject2 callSim1;
 		callSim1 = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.contacts:id/call_sim1"));
 		callSim1.click();
 		marmot.waitFor(2);
+
+		marmot.log("Step 5 : IncallUI.");
 		checker.assertTrue("incallui",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_IN_CALL_UI));
 		marmot.waitFor(5);
-		
 		marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
 
+		marmot.log("Step 6 : numberplate closed.");
 		UiObject2 numberclosed;
-		numberclosed = marmot.getUiObject(By.clazz("android.widget.ImageView").res(
-				"com.android.incallui:id/dialpadArrow"));
+		numberclosed = marmot.getUiObject(By.clazz("android.widget.ImageView")
+				.res("com.android.incallui:id/dialpadArrow"));
 		numberclosed.click();
 		marmot.waitFor(1);
 		marmot.saveScreenshot("numberclosed" + IMAGE_EXTENSION);
 
+		marmot.log("Step 7 : numberplate open.");
 		UiObject2 numberopen;
-		numberopen = marmot.getUiObject(By.clazz("android.widget.ImageView").res(
-				"com.android.incallui:id/dialpadArrow"));
+		numberopen = marmot.getUiObject(By.clazz("android.widget.ImageView")
+				.res("com.android.incallui:id/dialpadArrow"));
 		numberopen.click();
 		marmot.waitFor(1);
 		marmot.saveScreenshot("numberopen" + IMAGE_EXTENSION);
-		
-	    UiObject2 hangOff;
+
+		marmot.log("Step 7 : hangoff.");
+		UiObject2 hangOff;
 		hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.incallui:id/endButton"));
 		hangOff.click();
 		marmot.waitFor(2);
+		checker.setTestrailResult("C513249", true);
 	}
-		
-
-		
 
 	private boolean dialNumber(String phoneNumber) {
 		UiObject2 dialNumber;

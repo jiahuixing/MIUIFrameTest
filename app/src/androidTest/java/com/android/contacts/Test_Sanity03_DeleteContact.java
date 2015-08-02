@@ -2,6 +2,8 @@ package com.android.contacts;
 
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiScrollable;
+import android.support.test.uiautomator.UiSelector;
 import android.test.InstrumentationTestCase;
 
 import com.miui.marmot.lib.Checker;
@@ -30,7 +32,8 @@ public class Test_Sanity03_DeleteContact extends InstrumentationTestCase {
 		mm.launchActivity("com.android.contacts/.activities.PeopleActivity");
 
 		mm.log("Step 2 : Click CONTACT in contacts list.");
-		mm.clickOnTextInList(Lib_Contacts.CONTACT_NAME);
+		new UiScrollable(new UiSelector().className("android.widget.ListView")).scrollTextIntoView(Lib_Contacts.CONTACT_NAME);
+        mm.click(By.text(Lib_Contacts.CONTACT_NAME));
 
 		mm.log("Step 3 : Delete contact on detail page.");
 		mm.click(By.text("更多"));

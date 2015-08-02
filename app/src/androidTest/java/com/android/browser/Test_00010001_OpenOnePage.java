@@ -60,7 +60,7 @@ public class Test_00010001_OpenOnePage extends InstrumentationTestCase {
 			mDevice.findObject(By.clazz("android.widget.TextView").textContains("退出")).click();
 			mm.waitFor(3);
 		}
-		
+
 		mm.pressBack(3);
 		super.tearDown();
 	}

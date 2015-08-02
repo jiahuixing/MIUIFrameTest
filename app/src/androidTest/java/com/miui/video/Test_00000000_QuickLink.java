@@ -10,10 +10,6 @@ public class Test_00000000_QuickLink extends InstrumentationTestCase {
     private Marmot mm;
     private Checker cc;
 
-    private static final String PACKAGE_NAME = "com.miui.video";
-    private static final String HOME_ACTIVITY_NAME = PACKAGE_NAME
-            + "/.HomeActivity";
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -32,7 +28,7 @@ public class Test_00000000_QuickLink extends InstrumentationTestCase {
     }
 
     public void testQuickLink() throws Exception {
-        mm.launchActivity(HOME_ACTIVITY_NAME);
+        mm.launchActivity(Lib_VideoConst.HOME_ACTIVITY_NAME);
         mm.log("Step 1 : Open video.");
         mm.log("Step 2 : Check play history.");
         mm.click(By.text("播放历史"));

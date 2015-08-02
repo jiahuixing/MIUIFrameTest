@@ -57,6 +57,8 @@ public class Test_00000000_Phone extends InstrumentationTestCase {
 		marmot = new Marmot(this);
 		checker = new Checker(marmot);
 		uiDevice = marmot.getUiDevice();
+
+		marmot.log("Step 1 : Screen unlock.");
 		if (!marmot.isScreenOn()) {
 			marmot.wakeUp();
 			marmot.waitFor(1);
@@ -68,9 +70,12 @@ public class Test_00000000_Phone extends InstrumentationTestCase {
 	}
 
 	public void test_00000000_Phone() throws Exception {
-		marmot.log("launch contacts.");
+		marmot.log("Step 2 : launch contacts Activity.");
+		marmot.pressHome();
 		marmot.launchActivity(ACTIVITY_NAME_CONTACTS);
 		marmot.waitFor(2);
+
+		marmot.log("Step 3 : dialNumber.");
 		checker.assertTrue("contacts",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_CONTACTS));
 		UiObject2 showDialPad, dialPad;
@@ -84,6 +89,8 @@ public class Test_00000000_Phone extends InstrumentationTestCase {
 		}
 		checker.assertTrue("dialNumber", dialNumber("112"));
 		marmot.saveScreenshot("dialNumber" + IMAGE_EXTENSION);
+
+		marmot.log("Step 4 : single SIM card call.");
 		UiObject2 callSim1;
 		callSim1 = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.contacts:id/call_sim1"));
@@ -92,15 +99,20 @@ public class Test_00000000_Phone extends InstrumentationTestCase {
 		// marmot.getUiObject(By.clazz("android.widget.Button").res("com.android.contacts:id/call_sim2"));
 		callSim1.click();
 		marmot.waitFor(2);
+
+		marmot.log("Step 5 : IncallUI.");
 		checker.assertTrue("incallui",
 				marmot.getCurrentPackageName().equals(PACKAGE_NAME_IN_CALL_UI));
 		marmot.waitFor(5);
 		marmot.saveScreenshot("incallui" + IMAGE_EXTENSION);
+
+		marmot.log("Step 6 : HangOff Call.");
 		UiObject2 hangOff;
 		hangOff = marmot.getUiObject(By.clazz("android.widget.Button").res(
 				"com.android.incallui:id/endButton"));
 		hangOff.click();
 		marmot.waitFor(2);
+		checker.setTestrailResult("C513425", true);
 	}
 
 	private boolean dialNumber(String phoneNumber) {
@@ -129,4 +141,4 @@ public class Test_00000000_Phone extends InstrumentationTestCase {
 		super.tearDown();
 	}
 }
-//C513425 有SIM卡时呼叫112
+// C513425 有SIM卡时呼叫112
